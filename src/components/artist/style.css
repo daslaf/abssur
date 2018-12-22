@@ -1,0 +1,8 @@
+.artist {
+  height: 100%;
+  overflow: hidden;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
