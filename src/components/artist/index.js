@@ -3,11 +3,11 @@ import style from './style';
 
 const Artist = ({
   active,
-  firstName,
+  name,
+  surname,
   id,
-  img,
-  lastName,
-  thumbnail,
+  image,
+  mainArtwork,
   onMouseEnter,
   onMouseLeave
 }) => {
@@ -20,18 +20,18 @@ const Artist = ({
     <div
       className={style.artist + ' ' + className}
       style={{
-        backgroundImage: `url(${img})`
+        backgroundImage: `url(${image.fields.file.url})`
       }}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >
       <div
-        className={style.thumbnail}
+        className={style.mainArtwork}
         style={{
-          backgroundImage: `url(${thumbnail})`
+          backgroundImage: `url(${mainArtwork.fields.file.url})`
         }}
       />
-      <h1 className={style.name}>{firstName} <b>{lastName}</b></h1>
+      <h1 className={style.name}>{name} <b>{surname}</b></h1>
     </div>
   );
 };
