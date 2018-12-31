@@ -1,5 +1,27 @@
 .home {
-	/* padding: 56px 20px; */
-	min-height: 100%;
+
+}
+
+.hero {
+	min-height: 100vh;
 	width: 100%;
+	color: #f0f0f0;
+	padding: 0 16px;
+}
+
+.title {
+	composes: fira-mono from global;
+	font-size: 16px;
+	letter-spacing: .1rem;
+	font-weight: 400;
+}
+
+.about {
+	line-height: 1.5;
+	font-size: 14px;
+	max-width: 464px;
+	width: 100%;
+	letter-spacing: 0.04rem;
+	padding-left: 48px;
+	margin: 32px 0;
 }

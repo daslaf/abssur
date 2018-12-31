@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway:400,600');
+@import url('https://fonts.googleapis.com/css?family=Fira+Mono');
+@import url('https://fonts.googleapis.com/css?family=Space+Mono');
 
 html, body {
 	height: 100%;
@@ -6,7 +8,7 @@ html, body {
 	padding: 0;
 	margin: 0;
 	background: #272727;
-	font-family: 'Helvetica Neue', arial, sans-serif;
+	font-family: 'Raleway', arial, sans-serif;
 	font-weight: 400;
 	color: #444;
 	-webkit-font-smoothing: antialiased;
@@ -23,4 +25,13 @@ html, body {
 
 :global .raleway {
 	font-family: 'Raleway', sans-serif;
+	letter-spacing: 0.03rem;
+}
+
+:global .space-mono {
+	font-family: 'Space Mono', 'Courier New', Courier, monospace;
+}
+
+:global .fira-mono {
+	font-family: 'Fira Mono', 'Courier New', Courier, monospace;
 }

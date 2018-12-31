@@ -1,4 +1,6 @@
 import { h } from 'preact';
+import { Link } from 'preact-router/match';
+
 import style from './style';
 
 const Artist = ({
@@ -17,8 +19,9 @@ const Artist = ({
     : isActive ? style.artistActive : style.artistBlurred;
 
   return (
-    <div
-      className={style.artist + ' ' + className}
+    <Link
+      href={`/gallery/${id}`}
+      class={style.artist + ' ' + className}
       style={{
         backgroundImage: `url(${image.fields.file.url})`
       }}
@@ -26,13 +29,13 @@ const Artist = ({
       onMouseLeave={onMouseLeave}
     >
       <div
-        className={style.mainArtwork}
+        class={style.mainArtwork}
         style={{
           backgroundImage: `url(${mainArtwork.fields.file.url})`
         }}
       />
-      <h1 className={style.name}>{name} <b>{surname}</b></h1>
-    </div>
+      <h1 class={style.name}>{name} <b>{surname}</b></h1>
+    </Link>
   );
 };
 
