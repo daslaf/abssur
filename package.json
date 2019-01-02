@@ -40,6 +40,7 @@
     "contentful": "^7.0.5",
     "preact": "^8.2.6",
     "preact-compat": "^3.17.0",
+    "preact-context": "^1.1.2",
     "preact-router": "^2.5.7",
     "react-transition-group": "^2.5.2"
   },

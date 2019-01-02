@@ -1,27 +1,78 @@
-.home {
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+}
 
+.container {
+  overflow: hidden;
+  width: 240px;
+  height: 640px;
+  /* background: linear-gradient(#000, #272727); */
+  margin: auto;
+  display: flex;
+  align-items: center;
 }
 
 .hero {
-	min-height: 100vh;
-	width: 100%;
-	color: #f0f0f0;
-	padding: 0 16px;
+  width: 100%;
+  min-height: 560px;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+
+  padding: 0 16px;
+  margin-top: 64px;
+  margin-bottom: 128px;
+  color: #f0f0f0;
 }
 
 .title {
-	composes: fira-mono from global;
-	font-size: 16px;
-	letter-spacing: .1rem;
-	font-weight: 400;
+  composes: fira-mono from global;
+
+  position: relative;
+  display: inline-block;  
+
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: .1rem;
+}
+
+.title::before {
+  content: "";
+  
+  display: block;
+  position: absolute;
+  width: 12px;
+  height: 48px;
+
+  top: -12px;
+  left: -28px;
+
+  border: 1px solid #fff;
+}
+
+.title::after {
+  content: "";
+
+  display: block;
+  position: absolute;
+  
+  width: 64px;
+
+  bottom: -8px;
+  right: -30px;
+
+  border-top: 1px solid #fff;
 }
 
 .about {
-	line-height: 1.5;
-	font-size: 14px;
-	max-width: 464px;
-	width: 100%;
-	letter-spacing: 0.04rem;
-	padding-left: 48px;
-	margin: 32px 0;
+  line-height: 1.5;
+  font-size: 14px;
+  max-width: 512px;
+  width: 100%;
+  letter-spacing: 0.04rem;
+  padding-left: 48px;
+  margin: 32px 0;
 }

@@ -54,6 +54,8 @@
   font-weight: 400;
   text-align: center;
   text-transform: uppercase;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+
   transform: translateY(4px) scale(.97);
   transition: all 500ms cubic-bezier(0.23, 1, 0.320, 1) 195ms;
 }

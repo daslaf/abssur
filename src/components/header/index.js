@@ -1,8 +1,11 @@
 import { h } from 'preact';
 import { Link } from 'preact-router/match';
+
+import { EN_US, ES_CL } from '../../context/lang';
+
 import style from './style';
 
-const Header = () => (
+const Header = ({ locale, onChangeLang }) => (
   <header class={style.header}>
     <nav>
       <Link
@@ -15,6 +18,20 @@ const Header = () => (
         />
       </Link>
     </nav>
+    <div>
+      <button
+        class={locale === ES_CL ? style.buttonActive : style.button}
+        onClick={onChangeLang(ES_CL)}
+      >
+        Español
+      </button>
+      <button
+        class={locale === EN_US ? style.buttonActive : style.button}
+        onClick={onChangeLang(EN_US)}
+      >
+        English
+      </button>
+    </div>
   </header>
 );
 

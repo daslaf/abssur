@@ -4,6 +4,8 @@ import style from './style';
 import { getArtists } from '../../model/artist';
 import Artists from '../../components/artists';
 
+import Translations from '../../context/translations';
+
 class Home extends Component {
   state = {
     artists: []
@@ -22,10 +24,19 @@ class Home extends Component {
   render(props, { artists }) {
     return (
       <div class={style.home}>
-        <div class={style.hero}>
-          <h1 class={style.title}>Abstracción Sur</h1>
-          <p class={style.about}>Aproximación a la visualidad, pensamiento creativo e investigación material de los que formaron parte del origen y desarrollo de la abstracción geométrica y constructiva en Chile desde la segunda mitad del siglo XX.</p>
+        <div class={style.wrapper}>
+          <div class={style.hero}>
+            <div>
+              <h1 class={style.title}>Abstracción Sur</h1>
+              <Translations.Consumer>
+                {messages => (
+                  <p class={style.about}>{messages.HOME_ABOUT}</p>
+                )}
+              </Translations.Consumer>
+            </div>
+          </div>
         </div>
+
         <Artists artists={artists} />
       </div>
     );

@@ -8,25 +8,34 @@ import Profile from '../routes/profile';
 import Header from './header';
 import Footer from './footer';
 
-export default class App extends Component {
-    
-  /** Gets fired when the route changes.
-   *  @param {Object} event   "change" event from [preact-router](http://git.io/preact-router)
-   *  @param {string} event.url The newly routed URL
-   */
-  handleRoute = e => {
-    this.currentUrl = e.url;
-  };
+import { ES_CL } from '../context/lang';
+import Translations from '../context/translations';
 
-  render() {
+import TOKENS from '../translations';
+
+export default class App extends Component {
+  state = {
+    locale: ES_CL
+  }
+
+  handleChangeLang = locale => (event) => {
+    this.setState({ locale });
+  }
+
+  render(props, { locale }) {
     return (
       <div id="app">
-        <Header />
-        <Router onChange={this.handleRoute}>
-          <Home path="/" />
-          <Profile path="/gallery/:id" />
-        </Router>
-        <Footer />
+        <Translations.Provider value={TOKENS[locale]}>
+          <Header
+            onChangeLang={this.handleChangeLang}
+            locale={locale}
+          />
+          <Router onChange={this.handleRoute}>
+            <Home path="/" />
+            <Profile path="/gallery/:id" />
+          </Router>
+          <Footer />
+        </Translations.Provider>
       </div>
     );
   }
