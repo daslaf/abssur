@@ -18,7 +18,13 @@ class Artists extends Component {
 
   render({ artists }, { active }) {
     return (
-      <Gallery source={artists}>
+      <Gallery
+        source={artists}
+        style={{
+          background: '#272727',
+          zIndex: 3
+        }}
+      >
         {({ data }) => (
           <Artist
             active={active}

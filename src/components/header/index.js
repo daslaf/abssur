@@ -1,7 +1,7 @@
 import { h } from 'preact';
 import { Link } from 'preact-router/match';
 
-import { EN_US, ES_CL } from '../../context/lang';
+import { EN_US, ES_CL } from '../../utils/locale';
 
 import style from './style';
 

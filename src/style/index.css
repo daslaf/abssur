@@ -19,8 +19,18 @@ html, body {
 	box-sizing: border-box;
 }
 
-#app {
+#app,
+#wrapper {
 	height: 100%;
+}
+
+#wrapper > span {
+	height: 100%;
+}
+
+.liquid-pageholder {
+	padding-top: 56px;
+	padding-bottom: 56px;
 }
 
 :global .raleway {

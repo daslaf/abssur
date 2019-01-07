@@ -10,9 +10,9 @@ const Footer = () => (
     <Translations.Consumer>
       {tokens => (
         <nav class={style.nav}>
-          <Link class={style.link} href="/">Inicio</Link>
-          <Link class={style.link} href="/">Galería</Link>
-          <Link class={style.link} href="/">Equipo</Link>
+          <Link class={style.link} href="/">{tokens.NAV_HOME}</Link>
+          <Link class={style.link} href="/">{tokens.NAV_GALLERY}</Link>
+          <Link class={style.link} href="/">{tokens.NAV_TEAM}</Link>
         </nav>
       )}
     </Translations.Consumer>

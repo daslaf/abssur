@@ -1,14 +1,14 @@
 import { h } from 'preact';
-import style from './style';
+import css from './style';
 
-const Gallery = ({ children, source }) => {
+const Gallery = ({ children, source, style }) => {
   const [ first, ...rest ] = children;
 
   return (
-    <div className={style.grid}>
+    <div className={css.grid} style={style}>
       {source.map(item => (
-        <div className={style.item}>
-          <div className={style.content}>
+        <div className={css.item}>
+          <div className={css.content}>
             {first({ data: item })}
           </div>
         </div>

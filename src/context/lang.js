@@ -1,8 +1,6 @@
 import { createContext } from 'preact-context';
+import { ES_CL } from '../utils/locale';
 
-export const EN_US = 'en-US';
-export const ES_CL = 'es-CL';
-
-const Locale = createContext(EN_US);
+const Locale = createContext(ES_CL);
 
 export default Locale;

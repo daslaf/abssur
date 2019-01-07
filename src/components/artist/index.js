@@ -1,6 +1,8 @@
 import { h } from 'preact';
 import { Link } from 'preact-router/match';
 
+import { withLocale } from '../../utils/locale';
+
 import style from './style';
 
 const Artist = ({
@@ -10,6 +12,8 @@ const Artist = ({
   id,
   image,
   mainArtwork,
+  pluck,
+  slug,
   onMouseEnter,
   onMouseLeave
 }) => {
@@ -20,10 +24,10 @@ const Artist = ({
 
   return (
     <Link
-      href={`/gallery/${id}`}
+      href={`/gallery/${pluck(slug)}`}
       class={style.artist + ' ' + className}
       style={{
-        backgroundImage: `url(${image.fields.file.url})`
+        backgroundImage: `url(${pluck(pluck(image).fields.file).url})`
       }}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
@@ -31,12 +35,14 @@ const Artist = ({
       <div
         class={style.mainArtwork}
         style={{
-          backgroundImage: `url(${mainArtwork.fields.file.url})`
+          backgroundImage: `url(${pluck(pluck(mainArtwork).fields.file).url})`
         }}
       />
-      <h1 class={style.name}>{name} <b>{surname}</b></h1>
+      <h1 class={style.name}>{pluck(name)} <b>{pluck(surname)}</b></h1>
     </Link>
   );
 };
 
-export default Artist;
+// create a HOC to pass locale to this as props
+
+export default withLocale(Artist);
