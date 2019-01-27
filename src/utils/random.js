@@ -1,0 +1,1 @@
+export const randomNumber = (x, y = 0) => Math.round(Math.random() * x + y);

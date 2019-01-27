@@ -7,10 +7,10 @@ html, body {
 	width: 100%;
 	padding: 0;
 	margin: 0;
-	background: #272727;
 	font-family: 'Raleway', arial, sans-serif;
 	font-weight: 400;
-	color: #444;
+	color: #272727;
+	background: #fff;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
@@ -19,19 +19,14 @@ html, body {
 	box-sizing: border-box;
 }
 
-#app,
+/* #app,
 #wrapper {
 	height: 100%;
 }
 
 #wrapper > span {
 	height: 100%;
-}
-
-.liquid-pageholder {
-	padding-top: 56px;
-	padding-bottom: 56px;
-}
+} */
 
 :global .raleway {
 	font-family: 'Raleway', sans-serif;

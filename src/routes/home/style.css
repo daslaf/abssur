@@ -3,29 +3,42 @@
   justify-content: space-between;
 }
 
-.container {
-  overflow: hidden;
-  width: 240px;
-  height: 640px;
-  /* background: linear-gradient(#000, #272727); */
-  margin: auto;
-  display: flex;
-  align-items: center;
+.expo {
+  
 }
 
 .hero {
+  max-width: 984px;
   width: 100%;
-  min-height: 560px;
-  
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: flex-end;
 
-  padding: 0 16px;
-  margin-top: 64px;
-  margin-bottom: 128px;
-  color: #f0f0f0;
+  display: flex;
+  align-items: center;
+
+  margin: 128px auto;
+  padding: 80px 0;
+
+  border: 2px solid #272727;
+}
+
+.hero > div {
+  flex: 1;
+  flex-basis: 61.8%;
+  padding: 0 80px;
+}
+
+.hero > div:first-child {
+  flex-basis: 38.2%;
+  border-right: 2px solid #272727;
+}
+
+.logo {
+  margin: 0;
+  text-align: right;
+}
+
+.backwards {
+  display: inline-block;
+  transform: rotateY(180deg);
 }
 
 .title {
@@ -50,7 +63,7 @@
   top: -12px;
   left: -28px;
 
-  border: 1px solid #fff;
+  border: 1px solid #272727;
 }
 
 .title::after {
@@ -64,15 +77,15 @@
   bottom: -8px;
   right: -30px;
 
-  border-top: 1px solid #fff;
+  border-top: 1px solid #272727;
 }
 
 .about {
+  composes: fira-mono from global;
+
   line-height: 1.5;
   font-size: 14px;
-  max-width: 512px;
-  width: 100%;
   letter-spacing: 0.04rem;
-  padding-left: 48px;
-  margin: 32px 0;
+
+  margin: 0;
 }

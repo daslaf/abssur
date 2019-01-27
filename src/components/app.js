@@ -8,7 +8,6 @@ import Home from '../routes/home';
 import ArtGallery from '../routes/art-gallery';
 
 import Header from './header';
-import Footer from './footer';
 
 import Locale from '../context/lang';
 import Translations from '../context/translations';
@@ -26,7 +25,7 @@ export default class App extends Component {
   }
 
   handleRouteChange = e => {
-    console.log('route change', e);
+    // console.log('route change', e);
   }
 
   render(props, { locale }) {
@@ -54,7 +53,6 @@ export default class App extends Component {
                 />
               </Router>
             </div>
-            <Footer />
           </Translations.Provider>
         </Locale.Provider>
       </div>

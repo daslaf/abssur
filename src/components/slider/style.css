@@ -34,7 +34,7 @@
 
   background: transparent;
   border: 0;
-  color: #fff;
+  /* color: #fff; */
   cursor: pointer;
   opacity: .5;
   pointer-events: all;
