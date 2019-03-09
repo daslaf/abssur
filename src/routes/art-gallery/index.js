@@ -28,7 +28,7 @@ class ArtistPage extends Component {
   render(props, { artworks }) {
     return (
       <div>
-        <Header />
+        <Header onChangeLang={props.onChangeLang} />
         <div>Video</div>
       </div>
     );

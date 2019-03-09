@@ -7,7 +7,7 @@ export default {
   'ABOUT_PROJECT_3': 'In the middle of this creative context, for several decades the artists remained in silence, the rumor and the rigor of the long creative days in the university classrooms and in their workshops, and they were not always sufficiently understood and valued at the level of the official criticism, the Public, institutions and collectors. There were works, manifestos, exhibitions in Chile, exchanges with Argentina, Uruguay and Brazil, and nevertheless, they were circumscribed in a specialized circuit of art. The works have no spectators in their historical time, and therefore, it took many years to be known.',
   'ABOUT_PROJECT_4': 'Abstracción Sur proposes, from the present, the visibility, not only a gallery of authors, works and spaces of diverse formats and scales, but it is an invitation to know from the own workshop, from its own voice, the material processes and the system of thought and the poetics in which the works remain to this day.',
   'FINANCED_BY': 'Financed by',
-  'INTRODUCTION': 'Introductio',
+  'INTRODUCTION': 'Introduction',
   'NAV_GALLERY': 'Gallery',
   'NAV_HOME': 'Home',
   'NAV_TEAM': 'Team',

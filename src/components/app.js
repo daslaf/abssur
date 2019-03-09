@@ -41,11 +41,13 @@ export default class App extends Component {
               <LiquidRoute
                 animator={FadeAnimation}
                 component={ArtGallery}
+                onChangeLang={this.handleChangeLang}
                 path="/gallery/:id"
               />
               <LiquidRoute
                 animator={FadeAnimation}
                 component={About}
+                onChangeLang={this.handleChangeLang}
                 path="/about"
               />
             </Router>

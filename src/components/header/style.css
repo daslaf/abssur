@@ -41,5 +41,23 @@
 }
 
 .logo {
-  
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #000;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.logo h1 {
+  font-weight: inherit;
+  font-size: inherit;
+}
+
+.logo strong {
+  font-weight: 700;
+}
+
+.logo span {
+  display: inline-block;
+  transform: rotateY(180deg);
 }
