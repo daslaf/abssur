@@ -1,74 +1,38 @@
 import { h, Component } from 'preact';
-import style from './style.css';
 
-import Artwork from '../../components/artwork';
-import Slider, { Controls, Wrapper } from '../../components/slider';
-import { controls, controlsPrevious, controlsNext, slide } from '../../components/slider/style';
-
+// import Artwork from '../../components/artwork';
+import Header from '../../components/header';
 import { getArtworksByArtist } from '../../model/artwork';
 
-class ArtGallery extends Component {
+class ArtistPage extends Component {
   state = {
     artworks: [],
     fetchingArtworks: false
   }
 
-  getArtworks = () => {
+  getArtworks = (id) => {
     this.setState({
       fetchingArtworks: true
     });
 
-    getArtworksByArtist().then((artworks) => {
+    getArtworksByArtist(id).then((artworks) => {
       this.setState({ artworks });
     });
   }
 
-  handleChange = args => console.log('handle change');
-
   componentDidMount() {
-    this.getArtworks();
+    // const { id } = this.props.matches;
+    // this.getArtworks(id);
   }
 
   render(props, { artworks }) {
     return (
-      <div class={style.main}>
-        <Slider
-          source={artworks}
-          onChange={this.handleChange}
-        >
-          <Controls>
-            {({ currentSlide, totalSlides, nextSlide, previousSlide }) => (
-              <div class={controls}>
-                <button
-                  class={controlsPrevious}
-                  onClick={previousSlide}
-                  disabled={currentSlide === 0}
-                >
-                  <i class="material-icons">keyboard_arrow_left</i>
-                </button>
-                <button
-                  class={controlsNext}
-                  onClick={nextSlide}
-                  disabled={currentSlide === totalSlides - 1 || totalSlides === 0}
-                >
-                  <i class="material-icons">keyboard_arrow_right</i>
-                </button>
-              </div>
-            )}
-          </Controls>
-          <Wrapper>
-            {({ data }) => (
-              <div class={slide}>
-                <Artwork
-                  {...data}
-                />
-              </div>
-            )}
-          </Wrapper>
-        </Slider>
+      <div>
+        <Header />
+        <div>Video</div>
       </div>
     );
   }
 }
 
-export default ArtGallery;
+export default ArtistPage;

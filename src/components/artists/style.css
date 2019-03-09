@@ -1,0 +1,67 @@
+.grid {
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+}
+
+.item {
+  height: 0;
+  position: relative;
+  padding-top: 100%;
+}
+
+:global(.item--0) {
+  grid-column: 3;
+}
+:global(.item--6) {
+  grid-column: 4;
+  grid-row: 3;
+}
+:global(.item--7) {
+  grid-column: 3;
+  grid-row: 4;
+}
+:global(.item--8) {
+  grid-column: 2;
+  grid-row: 5;
+}
+:global(.item--9) {
+  grid-column: 3;
+  grid-row: 5;
+}
+:global(.item--10) {
+  grid-column: 4;
+  grid-row: 5;
+}
+:global(.item--11) {
+  grid-column: 2;
+  grid-row: 6;
+}
+
+.logo {
+  composes: merriweather from global;
+
+  background-color: #fff;
+  color: #272727;
+  grid-column: 1 / 3;
+  grid-row: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 160px;
+  position: sticky;
+  top: 0;
+  mix-blend-mode: lighten;
+}
+
+.logo span {
+  transform: rotateY(180deg);
+}
+
+.content {
+  position: absolute;
+
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}

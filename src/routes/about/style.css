@@ -1,0 +1,73 @@
+.container {
+  composes: fira-mono from global;
+
+  margin: auto;
+  width: 100%;
+  padding: 32px 0;
+  max-width: 1212px;
+
+  display: flex;
+  justify-content: space-between; 
+}
+
+.fondart {
+  display: block;
+  width: 184px;
+  opacity: 0.5;
+  margin-right: 16px;
+}
+
+.title {
+  margin: 16px 0;
+  text-transform: uppercase;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.presentation {
+  flex: 1;
+  max-width: 656px;
+  margin: 0 auto;
+  padding: 0 16px;
+
+  font-size: 14px;
+  line-height: 17px;
+
+  margin-left: 100px;
+}
+
+@media screen and (max-width: 980px) {
+  .presentation {
+    margin: 0 auto;
+  }
+}
+@media screen and (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    max-width: 640px;
+  }
+}
+
+.team {
+  text-transform: uppercase;
+  max-width: 296px;
+  padding: 0 16px;
+  width: 100%;
+
+  font-size: 13px;
+  line-height: 1.3;
+
+  padding-top: 64px;
+}
+
+.team dt {
+  color: #7f7f7f;
+}
+.team dd {
+  margin: 0;
+  margin-bottom: 16px;
+}
+
+.team .title {
+  margin-top: 80px;
+}

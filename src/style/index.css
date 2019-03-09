@@ -1,42 +1,38 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway:400,600');
 @import url('https://fonts.googleapis.com/css?family=Fira+Mono');
 @import url('https://fonts.googleapis.com/css?family=Space+Mono');
+@import url('https://fonts.googleapis.com/css?family=Merriweather');
 
 html, body {
-	height: 100%;
-	width: 100%;
-	padding: 0;
-	margin: 0;
-	font-family: 'Raleway', arial, sans-serif;
-	font-weight: 400;
-	color: #272727;
-	background: #fff;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  font-family: 'Raleway', arial, sans-serif;
+  font-weight: 400;
+  color: #272727;
+  background: #e0e0e0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 * {
-	box-sizing: border-box;
+  box-sizing: border-box;
 }
 
-/* #app,
-#wrapper {
-	height: 100%;
+:global .merriweather {
+  font-family: 'Merriweather', 'Times New Roman', Times, serif;
 }
-
-#wrapper > span {
-	height: 100%;
-} */
 
 :global .raleway {
-	font-family: 'Raleway', sans-serif;
-	letter-spacing: 0.03rem;
+  font-family: 'Raleway', sans-serif;
+  letter-spacing: 0.03rem;
 }
 
 :global .space-mono {
-	font-family: 'Space Mono', 'Courier New', Courier, monospace;
+  font-family: 'Space Mono', 'Courier New', Courier, monospace;
 }
 
 :global .fira-mono {
-	font-family: 'Fira Mono', 'Courier New', Courier, monospace;
+  font-family: 'Fira Mono', 'Courier New', Courier, monospace;
 }

@@ -5,7 +5,7 @@ import { EN_US, ES_CL } from '../../utils/locale';
 
 import style from './style';
 
-const Header = ({ locale, onChangeLang }) => (
+const Header = ({ locale, onChangeLang = () => {} }) => (
   <header class={style.header}>
     <nav>
       <Link

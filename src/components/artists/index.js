@@ -1,7 +1,13 @@
 import { h, Component } from 'preact';
 
 import Artist from '../artist';
-import Gallery from '../gallery';
+import css from './style';
+
+const Logo = () => (
+  <div class={css.logo}>
+    <span>S</span>ur
+  </div>
+);
 
 class Artists extends Component {
   state = {
@@ -18,22 +24,21 @@ class Artists extends Component {
 
   render({ artists }, { active }) {
     return (
-      <Gallery
-        source={artists}
-        style={{
-          background: '#272727',
-          zIndex: 3
-        }}
-      >
-        {({ data }) => (
-          <Artist
-            active={active}
-            onMouseEnter={this.handleMouseEnter(data.id)}
-            onMouseLeave={this.handleMouseLeave}
-            {...data}
-          />
-        )}
-      </Gallery>
+      <div class={css.grid}>
+        {artists.map((item, index) => (
+          <div class={`${css.item} item--${index}`}>
+            <div class={css.content}>
+              <Artist
+                active={active}
+                onMouseEnter={this.handleMouseEnter(item.id)}
+                onMouseLeave={this.handleMouseLeave}
+                {...item}
+              />
+            </div>
+          </div>
+        ))}
+        <Logo />
+      </div>
     );
   }
 }

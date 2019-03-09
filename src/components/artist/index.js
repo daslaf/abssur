@@ -21,11 +21,12 @@ const Artist = ({
   const className = active === null
     ? ''
     : isActive ? style.artistActive : style.artistBlurred;
+  const classList = style.artist + ' ' + className;
 
   return (
     <Link
       href={`/gallery/${pluck(slug)}`}
-      class={style.artist + ' ' + className}
+      class={classList}
       style={{
         backgroundImage: `url(${pluck(pluck(image).fields.file).url})`
       }}
