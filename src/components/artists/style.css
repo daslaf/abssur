@@ -3,57 +3,48 @@
   align-items: stretch;
 }
 
-.grid {
-  display: grid;
-  width: 100%;
-  grid-template-columns: 25% 25% 25% 25%;
-
+.matrix {
+  display: block;
 }
 
-@media screen and (max-width: 1200px) {
-  .grid {
-    grid-template-columns: 33.3333% 33.3333% 33.3333%;
-  }
+.matrixRow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.matrixItem {
+  color: #fff;
+  flex: 1 1 100%;
+  height: 0;
+  position: relative;
 }
 
 @media screen and (max-width: 576px) {
-  .grid {
-    grid-template-columns: 50% 50%;
+  .matrixItem {
+    padding-top: 50%;
   }
 }
 
-.item {
-  height: 0;
-  position: relative;
-  padding-top: 100%;
+@media (min-width: 577px) and (max-width: 1200px) {
+  .matrixItem {
+    padding-top: 33.3333%;
+  }
 }
 
-:global(.item--0) {
-  grid-column: 3;
+@media screen and (min-width: 1201px) {
+  .matrixItem {
+    padding-top: 25%;
+  }
 }
-:global(.item--6) {
-  grid-column: 4;
-  grid-row: 3;
-}
-:global(.item--7) {
-  grid-column: 3;
-  grid-row: 4;
-}
-:global(.item--8) {
-  grid-column: 2;
-  grid-row: 5;
-}
-:global(.item--9) {
-  grid-column: 3;
-  grid-row: 5;
-}
-:global(.item--10) {
-  grid-column: 4;
-  grid-row: 5;
-}
-:global(.item--11) {
-  grid-column: 2;
-  grid-row: 6;
+
+.matrixItemContent {
+  position: absolute;
+
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }
 
 .logo {
@@ -71,13 +62,4 @@
 
 .logo span {
   transform: rotateY(180deg);
-}
-
-.content {
-  position: absolute;
-
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
 }
