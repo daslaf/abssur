@@ -1,6 +1,25 @@
+.wrapper {
+  display: flex;
+  align-items: stretch;
+}
+
 .grid {
   display: grid;
+  width: 100%;
   grid-template-columns: 25% 25% 25% 25%;
+
+}
+
+@media screen and (max-width: 1200px) {
+  .grid {
+    grid-template-columns: 33.3333% 33.3333% 33.3333%;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .grid {
+    grid-template-columns: 50% 50%;
+  }
 }
 
 .item {
@@ -42,15 +61,12 @@
 
   background-color: #fff;
   color: #272727;
-  grid-column: 1 / 3;
-  grid-row: 3;
   display: flex;
   align-items: center;
   justify-content: center;
+
+  padding: 16px;
   font-size: 160px;
-  position: sticky;
-  top: 0;
-  mix-blend-mode: lighten;
 }
 
 .logo span {

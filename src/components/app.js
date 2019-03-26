@@ -8,24 +8,38 @@ import Home from '../routes/home';
 import ArtGallery from '../routes/art-gallery';
 import About from '../routes/about';
 
-// import Header from './header';
-
 import Locale from '../context/lang';
 import Translations from '../context/translations';
 import { ES_CL } from '../utils/locale';
+import { getArtists } from '../model/artist';
 
 import TOKENS from '../translations';
 
 export default class App extends Component {
   state = {
-    locale: ES_CL
+    locale: ES_CL,
+    artists: []
   }
 
+  // Network
+  getArtists = () => {
+    getArtists().then(artists => {
+      this.setState({ artists });
+    });
+  };
+
+  // Handlers
   handleChangeLang = locale => (event) => {
     this.setState({ locale });
   }
 
-  render(props, { locale }) {
+  // Lifecycle
+  componentDidMount() {
+    this.getArtists();
+  }
+
+  // Render
+  render(props, { artists, locale }) {
     return (
       <div id="app">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
@@ -35,12 +49,14 @@ export default class App extends Component {
             <Router>
               <LiquidRoute
                 animator={FadeAnimation}
+                artists={artists}
                 component={Home}
                 path="/"
               />
               <LiquidRoute
                 animator={FadeAnimation}
                 component={ArtGallery}
+                artists={artists}
                 onChangeLang={this.handleChangeLang}
                 path="/gallery/:id"
               />

@@ -39,11 +39,11 @@ const Artist = ({
           backgroundImage: `url(${pluck(pluck(mainArtwork).fields.file).url})`
         }}
       />
-      <h1 class={style.name}>{pluck(name)} <b>{pluck(surname)}</b></h1>
+      <h1 class={style.name}>
+        {pluck(name)} <strong>{pluck(surname)}</strong>
+      </h1>
     </Link>
   );
 };
-
-// create a HOC to pass locale to this as props
 
 export default withLocale(Artist);

@@ -36,3 +36,14 @@ html, body {
 :global .fira-mono {
   font-family: 'Fira Mono', 'Courier New', Courier, monospace;
 }
+
+/* Override youtube player styles */
+
+.ytp-pause-overlay {
+  display: none !important;
+}
+
+.ytp-pause-overlay-controls-hidden .ytp-pause-overlay,
+.ytp-hide-controls .ytp-watermark {
+  display: none !important;
+}
