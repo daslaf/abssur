@@ -19,5 +19,9 @@ const withLocale = (WrappedComponent) => (props) => (
   </Locale.Consumer>
 );
 
-
-export { EN_US, ES_CL, pluck, withLocale };
+export {
+  EN_US,
+  ES_CL,
+  pluck,
+  withLocale
+};

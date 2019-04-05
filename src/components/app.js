@@ -1,5 +1,5 @@
 import { h, Component } from 'preact';
-import { Router } from 'preact-router';
+import { Router, route } from 'preact-router';
 import LiquidRoute, { FadeAnimation } from 'liquid-route';
 import 'liquid-route/style.css';
 
@@ -17,15 +17,20 @@ import TOKENS from '../translations';
 
 export default class App extends Component {
   state = {
-    locale: ES_CL,
-    artists: []
+    activeArtist: null,
+    artists: [],
+    locale: ES_CL
   }
 
   // Network
   getArtists = () => {
-    getArtists().then(artists => {
-      this.setState({ artists });
-    });
+    const { artists } = this.state;
+    
+    if (artists.length === 0) {
+      return getArtists();
+    }
+
+    return Promise.resolve(artists);
   };
 
   // Handlers
@@ -33,20 +38,47 @@ export default class App extends Component {
     this.setState({ locale });
   }
 
+  handleRouteChange = (event) => {
+    const matches = (/^\/gallery\/.*/g).test(event.url);
+
+    if (matches) {
+      const { id } = event.current.attributes.matches;
+
+      this.getArtists().then(
+        artists => {
+          const activeArtist = artists.find(a => {
+            const [ slug ] = Object.values(a.slug);
+    
+            return slug === id;
+          });
+    
+          if (!activeArtist) {
+            route('/', true);
+          }
+          else {
+            this.setState({ activeArtist });
+          }
+        }
+      )
+    }
+  }
+
   // Lifecycle
   componentDidMount() {
-    this.getArtists();
+    this.getArtists().then(artists => {
+      this.setState({ artists });
+    });
   }
 
   // Render
-  render(props, { artists, locale }) {
+  render(props, { activeArtist, artists, locale }) {
     return (
       <div id="app">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 
         <Locale.Provider value={locale}>
           <Translations.Provider value={TOKENS[locale]}>
-            <Router>
+            <Router onChange={this.handleRouteChange}>
               <LiquidRoute
                 animator={FadeAnimation}
                 artists={artists}
@@ -56,7 +88,7 @@ export default class App extends Component {
               <LiquidRoute
                 animator={FadeAnimation}
                 component={ArtGallery}
-                artists={artists}
+                activeArtist={activeArtist}
                 onChangeLang={this.handleChangeLang}
                 path="/gallery/:id"
               />

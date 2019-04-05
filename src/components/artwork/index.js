@@ -1,19 +1,27 @@
-import { h } from 'preact';
-import style from './style.css';
-
 import { withLocale } from '../../utils/locale';
 
-const Artwork = ({ format, image, name, pluck, technique, year }) => (
-  <div class={style.artwork}>
-    <h5>{pluck(name)}</h5>
-    <img
-      alt={pluck(pluck(image).fields.title)}
-      src={pluck(pluck(image).fields.file).url}
-    />
-    <p>{pluck(technique)}</p>
-    <p>{pluck(format)}</p>
-    <p>{pluck(year)}</p>
-  </div>
-);
+const Artwork = ({
+  children,
+  format,
+  image,
+  name,
+  pluck,
+  technique,
+  thumbnail,
+  year
+}) => children[0]({
+  format: pluck(format),
+  image: {
+    alt: pluck(pluck(image).fields.title),
+    src: pluck(pluck(image).fields.file).url
+  },
+  name: pluck(name),
+  technique: pluck(technique),
+  thumbnail: {
+    alt: pluck(pluck(thumbnail).fields.title),
+    src: pluck(pluck(thumbnail).fields.file).url
+  },
+  year: pluck(year)
+});
 
 export default withLocale(Artwork);

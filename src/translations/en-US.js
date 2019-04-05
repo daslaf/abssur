@@ -1,6 +1,10 @@
 /* eslint-disable quotes */
 /* eslint-disable quote-props */
 export default {
+  'ARTWORK_FORMAT': 'Format',
+  'ARTWORK_NAME': 'Name',
+  'ARTWORK_TECHNIQUE': 'Technique',
+  'ARTWORK_YEAR': 'Year',
   'HOME_ABOUT': 'Approach to visuality, creative thinking and material research that formed part of the emergence of abstraction in Chile since the second half of the 20th century.',
   'ABOUT_PROJECT_1': 'This portal portraits 12 artists who collectively and individually, integrating groups or independently, developed in Chile, between 1955 and today, a critical vision of traditional figuration, and therefore, are oriented towards an abstract and utopian modernity in its different variants: geometric, constructive, optical and kinetic.',
   'ABOUT_PROJECT_2': 'There were several factors that allowed this artistic avant-garde, both at the level of students and teachers: crisis and renewal of university education (1930, 1945 and 1970); Information, exchanges and trips to Europe and the USA of Chilean artists; The arrival of international exhibitions (De Manet to our days in 1950 and De Cezanne to Miró in 1968, among others), and the temporary or permanent residence of foreign artists and theoreticians to our country.',

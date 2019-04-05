@@ -9,7 +9,7 @@ const About = (props) => (
     {TOKENS => (
       <div>
         <Header onChangeLang={props.onChangeLang} />
-        <div class={css.container}>
+        <div class={`container ${css.container}`}>
           <section class={css.presentation}>
             <h2 class={css.title}>{TOKENS.INTRODUCTION}</h2>
 

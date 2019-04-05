@@ -37,6 +37,13 @@ html, body {
   font-family: 'Fira Mono', 'Courier New', Courier, monospace;
 }
 
+.container {
+  margin: auto;
+  width: 100%;
+  padding: 32px 0;
+  max-width: 1212px;
+}
+
 /* Override youtube player styles */
 
 .ytp-pause-overlay {

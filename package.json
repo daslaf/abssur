@@ -38,6 +38,7 @@
     "preact-render-spy": "^1.2.1"
   },
   "dependencies": {
+    "@contentful/rich-text-react-renderer": "^13.2.0",
     "contentful": "^7.0.5",
     "liquid-route": "^1.0.1",
     "lodash": "^4.17.11",

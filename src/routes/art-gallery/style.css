@@ -1,4 +1,138 @@
-.main {
-  min-height: calc(100vh - 112px);
+.video {
+  position: relative;
+  width: 80%;
+  padding-bottom: 56.25%;
+  height: 0;
+  margin-right: 0;
+  margin-left: auto;
+  margin-bottom: 240px;
+}
+
+.video iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.gallery {
   display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin: 0 -8px;
+  margin-bottom: 88px;
+}
+
+.galleryArtworks {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0 8px;
+  margin: 0 -8px;
+  width: 80%;
+}
+
+.galleryArtistName {
+  composes: raleway from global;
+
+  font-size: 19px;
+  text-transform: uppercase;
+  text-align: right;
+  font-weight: 400;
+  margin: 8px;
+}
+
+.galleryArtistName strong {
+  font-weight: 600;
+}
+
+.galleryItem {
+  width: 108px;
+  height: 108px;
+  margin: 8px;
+  overflow: hidden;
+
+  cursor: pointer;
+  background-color: #b2b2b2;
+  background-size: 130%;
+  background-position: center;
+  border-radius: 8px;
+  box-shadow:
+  0 2px 4px -2px rgba(0,0,0,.1),
+  0 4px 8px -4px rgba(0,0,0,.1);
+
+  transition: all 95ms ease-out;
+  transform: scale(1);
+  opacity: .7;
+}
+
+.galleryItem:hover,
+.galleryItem:focus {
+  opacity: 1;
+}
+
+.galleryItemActive {
+  opacity: 1;
+  transform: scale(1.05);
+  box-shadow:
+  0 2px 4px -1px rgba(0,0,0,.1),
+  0 4px 8px -2px rgba(0,0,0,.1),
+  0 8px 16px -4px rgba(0,0,0,.1),
+  0 16px 32px -8px rgba(0,0,0,.1);
+}
+
+.artwork,
+.biography {
+  width: 60%;
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.artworkDisplay {
+  display: flex;
+  align-items: center;
+}
+
+.artworkDisplay img {
+  display: block;
+  width: 66.6666%;
+}
+
+.artworkPlaceholder {
+  display: block;
+  height: 0;
+  width: 66.6666%;
+  background-color:  #b2b2b2;
+  padding-bottom: 66.6666%;
+}
+
+.artworkInfo {
+  composes: fira-mono from global;
+
+  font-size: 12px;
+  text-transform: uppercase;
+
+  margin-top: 72px;
+  margin-bottom: 120px;
+}
+
+.artworkInfo span {
+  display: flex;
+}
+
+.artworkInfo dt {
+  font-weight: 600;
+  width: 120px;
+}
+.artworkInfo dt,
+.artworkInfo dd {
+  margin: 8px 0;
+}
+
+.biography {
+  composes: fira-mono from global;
+
+  font-size: 16px;
+  line-height: 1.5;
 }

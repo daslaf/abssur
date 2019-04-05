@@ -1,6 +1,10 @@
 /* eslint-disable quotes */
 /* eslint-disable quote-props */
 export default {
+  'ARTWORK_FORMAT': 'Formato',
+  'ARTWORK_NAME': 'Nombre',
+  'ARTWORK_TECHNIQUE': 'Técnica',
+  'ARTWORK_YEAR': 'Año',
   'HOME_ABOUT': 'Aproximación a la visualidad, pensamiento creativo e investigación material de los que formaron parte del origen y desarrollo de la abstracción geométrica y constructiva en Chile desde la segunda mitad del siglo XX.',
   'ABOUT_PROJECT_1': 'Este sitio web despliega la obra de 12 artistas que, de manera colectiva o individual, desarrollaron en Chile, entre 1955 y la actualidad, una visualizad abstracta en sus distintas variantes: geométrica, constructiva, óptica y cinética. Muchos de ellos pertenecieron al Movimiento Forma y Espacio, agrupación continuadora de la abstracción constructiva y geométrica del Grupo Rectángulo.',
   'ABOUT_PROJECT_2': 'Hubo varios factores que influyeron y facilitaron el surgimiento de esta escena de vanguardia tanto a nivel de estudiantes formo de profesores: crisis y renovación de la enseñanza universitaria (1930, 1945 y 1970); información, intercambios y viajes a Europa y Estados Unidos de los artistas chilenos; llegada de exposiciones internacionales (De Manera a nuestros días en 1950 y De Cezanne a Miró en 1968, entre otras), y residencias temporales o permanentes de artistas y teóricos extranjeros en nuestro país.',
