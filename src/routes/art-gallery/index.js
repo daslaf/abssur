@@ -25,7 +25,10 @@ class ArtistPage extends Component {
     });
 
     getArtworksByArtist(id).then((artworks) => {
-      this.setState({ artworks });
+      this.setState({
+        artworks,
+        fetchingArtworks: false
+      });
     });
   };
 
@@ -69,6 +72,7 @@ class ArtistPage extends Component {
                   </div>
                 </section>
 
+                {/* Artworks List */}
                 <section class={css.gallery}>
                   <div class={css.galleryArtworks}>
                     {artworks.map((data, index) => (
@@ -90,7 +94,8 @@ class ArtistPage extends Component {
                     {pluck(activeArtist.name)} <strong>{pluck(activeArtist.surname)}</strong>
                   </h1>
                 </section>
-
+                
+                {/* Active Artwork */}
                 <section class={css.artwork}>
                   <div class={css.artworkDisplay}>
                     {artworks.length
@@ -140,6 +145,7 @@ class ArtistPage extends Component {
                   </div>
                 </section>
 
+                {/* Biography */}
                 {activeArtist && (
                   <section class={css.biography}>
                     {documentToReactComponents(pluck(activeArtist.biography))}
