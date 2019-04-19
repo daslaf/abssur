@@ -1,0 +1,59 @@
+{
+  "version": 2,
+  "name": "abssur",
+  "github": {
+    "enabled": false
+  },
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@now/static-build",
+      "config": {
+        "distDir": "build"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/assets/(.*)",
+      "dest": "/assets/$1"
+    },
+    { "src": "/favicon.ico", "dest": "/favicon.ico" },
+    { "src": "/manifest.json", "dest": "/manifest.json" },
+    { "src": "/push-manifest.json", "dest": "/push-manifest.json" },
+    {
+      "src": "/bundle.(.*)",
+      "headers": { "cache-control": "s-maxage=31536000,immutable" },
+      "dest": "/bundle.$1" },
+    {
+      "src": "/polyfills.(.*)",
+      "headers": { "cache-control": "s-maxage=31536000,immutable" },
+      "dest": "/polyfills.$1" },
+    {
+      "src": "/route-about.chunk.(.*)",
+      "headers": { "cache-control": "s-maxage=31536000,immutable" },
+      "dest": "/route-about.chunk.$1" },
+    {
+      "src": "/route-art-gallery.chunk.(.*)",
+      "headers": { "cache-control": "s-maxage=31536000,immutable" },
+      "dest": "/route-art-gallery.chunk.$1" },
+    {
+      "src": "/route-home.chunk.(.*)",
+      "headers": { "cache-control": "s-maxage=31536000,immutable" },
+      "dest": "/route-home.chunk.$1" },
+    {
+      "src": "/style.(.*)",
+      "headers": { "cache-control": "s-maxage=31536000,immutable" },
+      "dest": "/style.$1" },
+    {
+      "src": "/sw.js",
+      "headers": { "cache-control": "s-maxage=0" },
+      "dest": "/sw.js"
+    },
+    {
+      "src": "/(.*)",
+      "headers": { "cache-control": "s-maxage=0" },
+      "dest": "/index.html"
+    }
+  ]
+}

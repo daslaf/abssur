@@ -5,12 +5,13 @@
   "license": "MIT",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run -s serve || npm run -s dev",
-    "build": "./node_modules/.bin/preact build",
+    "build": "./node_modules/.bin/preact build --no-prerender",
     "serve": "preact build && preact serve",
     "dev": "preact watch",
     "lint": "eslint src",
     "test": "jest",
-    "deploy": "firebase deploy"
+    "deploy": "firebase deploy",
+    "now-build": "./node_modules/.bin/preact build --no-prerender"
   },
   "eslintConfig": {
     "extends": "eslint-config-synacor",
