@@ -6,7 +6,7 @@ import Wrapper from './wrapper';
 
 class Slider extends Component {
   state = {
-    currentSlide: 0,
+    currentSlide: this.props.start || 0,
     totalSlides: 0
   }
 
@@ -14,12 +14,14 @@ class Slider extends Component {
     const { onChange } = this.props;
     const { currentSlide, totalSlides } = this.state;
 
-    onChange({
-      currentSlide,
-      totalSlides,
-      first: currentSlide === 0,
-      last: currentSlide === totalSlides - 1
-    });
+    if (typeof onChange === 'function') {
+      onChange({
+        currentSlide,
+        totalSlides,
+        first: currentSlide === 0,
+        last: currentSlide === totalSlides - 1
+      });
+    }
   }
 
   nextSlide = () => {
@@ -46,10 +48,10 @@ class Slider extends Component {
 
   /*** Lifecycle ***/
 
-  static getDerivedStateFromProps({ source }, { totalSlides }) {
-    if (source.length !== totalSlides) {
+  static getDerivedStateFromProps({ slides }, { totalSlides }) {
+    if (slides.length !== totalSlides) {
       return {
-        totalSlides: source.length
+        totalSlides: slides.length
       };
     }
 
@@ -62,24 +64,29 @@ class Slider extends Component {
 
   /*** Render ***/
 
-  render({ source, children }, { currentSlide, totalSlides }) {
+  render({ slides, children, ...props }, { currentSlide, totalSlides }) {
     return (
-      <div class={style.slider}>
+      <div
+        class={style.slider}
+        {...props}
+      >
         {
           children.map((vNode) => {
             if (vNode.nodeName === Controls) {
               return cloneElement(vNode, {
-                currentSlide,
-                totalSlides,
-                nextSlide: this.nextSlide,
-                previousSlide: this.previousSlide
+                current: currentSlide,
+                total: totalSlides,
+                isFirst: currentSlide === 0,
+                isLast: currentSlide === totalSlides - 1,
+                next: this.nextSlide,
+                previous: this.previousSlide
               });
             }
             else if (vNode.nodeName === Wrapper) {
               return cloneElement(vNode, {
-                currentSlide,
-                totalSlides,
-                source
+                current: currentSlide,
+                total: slides.length,
+                slides
               });
             }
       

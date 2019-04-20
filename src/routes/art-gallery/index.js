@@ -8,13 +8,15 @@ import { withLocale } from '../../utils/locale';
 import Translations from '../../context/translations';
 
 import Artwork from '../../components/artwork';
+import GalleryModal from '../../components/galleryModal';
 import Header from '../../components/header';
 
 class ArtistPage extends Component {
   state = {
     activeArtwork: 0,
     artworks: [],
-    fetchingArtworks: false
+    fetchingArtworks: false,
+    showCarousel: false
   };
 
   /* Network */
@@ -34,7 +36,11 @@ class ArtistPage extends Component {
 
   /* Handlers */
 
-  handleArtworkClick = artist => (event) => {
+  handleActiveArtworkClick = () => {
+    this.setState({ showCarousel: true });
+  }
+
+  handleArtworkClick = artist => () => {
     this.setState({ activeArtwork: artist });
   }
 
@@ -50,10 +56,93 @@ class ArtistPage extends Component {
     this.getArtworks();
   }
 
-  render(
-    { activeArtist, onChangeLang, pluck },
-    { activeArtwork, artworks }
-  ) {
+  renderArtworkDisplay = () => {
+    const { activeArtwork, artworks } = this.state;
+
+    return (
+      <section class={css.artwork}>
+        <div class={css.artworkDisplay}>
+          {artworks.length
+            ? (
+              <Translations.Consumer>
+                {TOKENS => (
+                  <Artwork {...artworks[activeArtwork]}>
+                    {({ format, image, name, technique, year }) => (
+                      <div>
+                        <img
+                          onClick={this.handleActiveArtworkClick}
+                          title={image.alt}
+                          alt={image.alt}
+                          src={image.src}
+                        />
+
+                        <dl class={css.artworkInfo}>
+                          <span>
+                            <dt>{TOKENS.ARTWORK_NAME}</dt>
+                            <dd>{name}</dd>
+                          </span>
+                          <span>
+                            <dt>{TOKENS.ARTWORK_YEAR}</dt>
+                            <dd>{year}</dd>
+                          </span>
+                          <span>
+                            <dt>{TOKENS.ARTWORK_FORMAT}</dt>
+                            <dd>{format}</dd>
+                          </span>
+                          <span>
+                            <dt>{TOKENS.ARTWORK_TECHNIQUE}</dt>
+                            <dd>{technique}</dd>
+                          </span>
+                        </dl>
+                      </div>
+                    )}
+                  </Artwork>
+                )}
+              </Translations.Consumer>
+            )
+            : (
+              <div class={css.artworkPlaceholder} />
+            )
+          }
+        </div>
+      </section>
+    );
+  }
+
+  renderArtworksList = () => {
+    const { activeArtist, pluck } = this.props;
+    const { activeArtwork, artworks } = this.state;
+
+    return (
+      <section class={css.gallery}>
+        <div class={css.galleryArtworks}>
+          {artworks.map((data, index) => (
+            <Artwork {...data}>
+              {({ thumbnail }) => (
+                <figure
+                  class={`${css.galleryItem} ${activeArtwork === index ? css.galleryItemActive  : '' }`}
+                  role="image"
+                  tabIndex="0"
+                  title={thumbnail.alt}
+                  onClick={this.handleArtworkClick(index)}
+                  onKeyDown={this.handleArtworkKeydown(index)}
+                  style={{ backgroundImage: `url(${thumbnail.src})` }}
+                />
+              )}
+            </Artwork>
+          ))}
+        </div>
+        <h1 class={css.galleryArtistName}>
+          {pluck(activeArtist.name)} <strong>{pluck(activeArtist.surname)}</strong>
+        </h1>
+      </section>
+    );
+  }
+
+  render(props, state) {
+    const { activeArtist, onChangeLang, pluck } = props;
+    const { activeArtwork, artworks, showCarousel } = state;
+
     return (
       <span>
         <Header onChangeLang={onChangeLang} />
@@ -73,77 +162,18 @@ class ArtistPage extends Component {
                 </section>
 
                 {/* Artworks List */}
-                <section class={css.gallery}>
-                  <div class={css.galleryArtworks}>
-                    {artworks.map((data, index) => (
-                      <Artwork {...data}>
-                        {({ thumbnail }) => (
-                          <figure
-                            class={`${css.galleryItem} ${activeArtwork === index ? css.galleryItemActive  : '' }`}
-                            role="image"
-                            tabIndex="0"
-                            onClick={this.handleArtworkClick(index)}
-                            onKeyDown={this.handleArtworkKeydown(index)}
-                            style={{ backgroundImage: `url(${thumbnail.src})` }}
-                          />
-                        )}
-                      </Artwork>
-                    ))}
-                  </div>
-                  <h1 class={css.galleryArtistName}>
-                    {pluck(activeArtist.name)} <strong>{pluck(activeArtist.surname)}</strong>
-                  </h1>
-                </section>
+                {this.renderArtworksList()}
+
+                {/* Gallery Modal */}
+                <GalleryModal
+                  in={showCarousel}
+                  onDestroy={() => this.setState({ showCarousel: false })}
+                  activeArtwork={activeArtwork}
+                  artworks={artworks}
+                />
                 
                 {/* Active Artwork */}
-                <section class={css.artwork}>
-                  <div class={css.artworkDisplay}>
-                    {artworks.length
-                      ? (
-                        <span>
-                          <Translations.Consumer>
-                            {TOKENS => (
-                              <Artwork {...artworks[activeArtwork]}>
-                                {({ format, image, name, technique, year }) => (
-                                  <div>
-                                    <span>
-                                      <img
-                                        alt={image.alt}
-                                        src={image.src}
-                                      />
-                                    </span>
-
-                                    <dl class={css.artworkInfo}>
-                                      <span>
-                                        <dt>{TOKENS.ARTWORK_NAME}</dt>
-                                        <dd>{name}</dd>
-                                      </span>
-                                      <span>
-                                        <dt>{TOKENS.ARTWORK_YEAR}</dt>
-                                        <dd>{year}</dd>
-                                      </span>
-                                      <span>
-                                        <dt>{TOKENS.ARTWORK_FORMAT}</dt>
-                                        <dd>{format}</dd>
-                                      </span>
-                                      <span>
-                                        <dt>{TOKENS.ARTWORK_TECHNIQUE}</dt>
-                                        <dd>{technique}</dd>
-                                      </span>
-                                    </dl>
-                                  </div>
-                                )}
-                              </Artwork>
-                            )}
-                          </Translations.Consumer>
-                        </span>
-                      )
-                      : (
-                        <div class={css.artworkPlaceholder} />
-                      )
-                    }
-                  </div>
-                </section>
+                {this.renderArtworkDisplay()}
 
                 {/* Biography */}
                 {activeArtist && (
