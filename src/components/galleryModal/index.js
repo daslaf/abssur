@@ -3,13 +3,15 @@ import Portal from 'preact-portal';
 
 import css from './style.css';
 
+import Device from '../../context/device';
 import Artwork from '../artwork';
 import Slider, { Controls, Wrapper } from '../slider';
 import { DisplayStatus, getClass } from './utils';
 
 class GalleryModal extends Component {
   state = {
-    status: ''
+    status: '',
+    activeSlideData: null
   };
 
   sliderRef = createRef();
@@ -17,6 +19,7 @@ class GalleryModal extends Component {
   handleKeyUp = (e) => {
     switch (e.which) {
     case 27: // esc
+      this.exitModal();
       break;
     case 37: // back
       this.sliderRef.current.previousSlide();
@@ -29,8 +32,12 @@ class GalleryModal extends Component {
     }
   };
 
-  dismiss = () => {
-    console.log('dismiss modal');
+  handleSlideChange = data => {
+    const { artworks } = this.props;
+
+    this.setState({
+      activeSlideData: artworks[data.current]
+    });
   }
 
   getClassList = base => {
@@ -44,35 +51,51 @@ class GalleryModal extends Component {
       : baseClasses;
   }
 
+  removeListeners = () => {
+    document.removeEventListener('keyup', this.handleKeyUp);
+  }
+
   registerListeners = () => {
     document.addEventListener('keyup', this.handleKeyUp);
   }
 
-  schedule = (status, time = 0) => {
+  schedule = (status, time = 0, callback) => {
     let handler = setTimeout(() => {
       this.setState({ status });
+
+      if (typeof callback === 'function') {
+        callback();
+      }
 
       clearTimeout(handler);
     }, time);
   }
 
-  startRendering = () => {
+  enterModal = () => {
     this.schedule(DisplayStatus.Exited);
     this.schedule(DisplayStatus.Entering, 32);
-    this.schedule(DisplayStatus.Entered, 275);
+    this.schedule(DisplayStatus.Entered, 275, this.registerListeners);
+  }
 
-    this.registerListeners();
+  exitModal = () => {
+    this.schedule(DisplayStatus.Entered, 0, this.removeListeners);
+    this.schedule(DisplayStatus.Exiting, 32);
+    this.schedule(DisplayStatus.Exited, 275, this.props.onHide);
   }
 
   componentDidUpdate(prevProps) {
     if (!prevProps.in && this.props.in) {
-      this.startRendering();
+      this.enterModal();
     }
+  }
+
+  componentWillUnmount() {
+    this.removeListeners();
   }
 
   renderContent = (props, state) => {
     const { activeArtwork, artworks } = props;
-    const { status } = state;
+    const { activeSlideData, status } = state;
 
     const modalClassList = this.getClassList('modal');
     const modalContentClassList = this.getClassList('modalContent');
@@ -84,13 +107,13 @@ class GalleryModal extends Component {
             <Slider
               ref={this.sliderRef}
               style="height: 100%"
-              // onChange={what => console.log('slider on change', what)}
+              onChange={this.handleSlideChange}
               start={activeArtwork}
               slides={artworks}
             >
               <Wrapper>
-                {({ data, index }) => (
-                  <Artwork {...data}>
+                {slide => (
+                  <Artwork {...slide.data}>
                     {({ image }) => (
                       <div class={css.slide}>
                         <figure
@@ -105,28 +128,49 @@ class GalleryModal extends Component {
                 )}
               </Wrapper>
               <Controls>
-                {({ current, total, next, previous }) => (
+                {({ isFirst, isLast, next, previous }) => (
                   <div class={css.controls}>
                     <button
                       className={css.controlsPrevious}
                       onClick={previous}
+                      disabled={isFirst}
                     >
                       <i class="material-icons">keyboard_arrow_left</i>
                     </button>
-                    <span>{current + 1} out of {total}</span>
                     <button
                       className={css.controlsNext}
                       onClick={next}
+                      disabled={isLast}
                     >
                       <i class="material-icons">keyboard_arrow_right</i>
                     </button>
                   </div>
                 )}
               </Controls>
-
-              <h1>hey</h1>
             </Slider>
           )}
+          <Device.Consumer>
+            {({ userCanHover }) => (!userCanHover && activeSlideData
+              ? (
+                <Artwork {...activeSlideData}>
+                  {({ name, year }) => (
+                    <div class={css.activeSlideData}>
+                      <p class={css.activeSlideDataContent}>
+                        {name} - {year}
+                      </p>
+                    </div>
+                  )}
+                </Artwork>
+              )
+              : null
+            )}
+          </Device.Consumer>
+          <button
+            class={css.dismiss}
+            onClick={this.exitModal}
+          >
+            <i class="material-icons">clear</i>
+          </button>
         </div>
       </div>
     );

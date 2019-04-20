@@ -50,6 +50,10 @@ class ArtistPage extends Component {
     }
   }
 
+  handleHideModal = () => {
+    this.setState({ showCarousel: false });
+  }
+
   /* Lifecycle */
 
   componentDidMount() {
@@ -167,7 +171,7 @@ class ArtistPage extends Component {
                 {/* Gallery Modal */}
                 <GalleryModal
                   in={showCarousel}
-                  onDestroy={() => this.setState({ showCarousel: false })}
+                  onHide={this.handleHideModal}
                   activeArtwork={activeArtwork}
                   artworks={artworks}
                 />

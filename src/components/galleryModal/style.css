@@ -76,24 +76,34 @@
   pointer-events: all;
 }
 
+.dismiss,
 .controlsPrevious,
 .controlsNext {
   height: 48px;
   width: 48px;
-  margin: 16px;
+  margin: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
 
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.05);
   border: 0;
   border-radius: 50%;
   color: white;
   cursor: pointer;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
   transition: all 195ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.dismiss {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.dismiss:focus,
+.dismiss:hover,
 .controlsPrevious:focus,
 .controlsPrevious:hover,
 .controlsNext:focus,
@@ -115,4 +125,27 @@
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+}
+
+.activeSlideData {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 8px 0;
+  text-align: center;
+}
+
+.activeSlideDataContent {
+  composes: fira-mono from global;
+
+  display: inline-block;
+  padding: 4px 12px;
+  margin: 0;
+
+  background: rgba(0,0,0,0.3);
+  border-radius: 2px;
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
 }

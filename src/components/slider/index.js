@@ -16,8 +16,8 @@ class Slider extends Component {
 
     if (typeof onChange === 'function') {
       onChange({
-        currentSlide,
-        totalSlides,
+        current: currentSlide,
+        total: totalSlides,
         first: currentSlide === 0,
         last: currentSlide === totalSlides - 1
       });

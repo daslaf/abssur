@@ -9,6 +9,7 @@ import ArtGallery from '../routes/art-gallery';
 import About from '../routes/about';
 
 import Locale from '../context/lang';
+import Device from '../context/device';
 import Translations from '../context/translations';
 import { ES_CL } from '../utils/locale';
 import { getArtists } from '../model/artist';
@@ -47,7 +48,7 @@ export default class App extends Component {
       this.getArtists().then(
         artists => {
           const activeArtist = artists.find(a => {
-            const [ slug ] = Object.values(a.slug);
+            const slug = a.slug[Object.keys(a.slug)[0]];
     
             return slug === id;
           });
@@ -59,7 +60,7 @@ export default class App extends Component {
             this.setState({ activeArtist });
           }
         }
-      )
+      );
     }
   }
 
@@ -68,40 +69,55 @@ export default class App extends Component {
     this.getArtists().then(artists => {
       this.setState({ artists });
     });
+
+    // Detect if user can hover
+    window.addEventListener(
+      'mouseover',
+      function onFirstHover() {
+        this.setState({ userCanHover: true });
+
+        window.removeEventListener('mouseover', onFirstHover, false);
+      }.bind(this),
+      false
+    );
   }
 
   // Render
-  render(props, { activeArtist, artists, locale }) {
-    return (
-      <div id="app">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  render(props, state) {
+    const { activeArtist, artists, locale, userCanHover } = state;
 
-        <Locale.Provider value={locale}>
-          <Translations.Provider value={TOKENS[locale]}>
-            <Router onChange={this.handleRouteChange}>
-              <LiquidRoute
-                animator={FadeAnimation}
-                artists={artists}
-                component={Home}
-                path="/"
-              />
-              <LiquidRoute
-                animator={FadeAnimation}
-                component={ArtGallery}
-                activeArtist={activeArtist}
-                onChangeLang={this.handleChangeLang}
-                path="/gallery/:id"
-              />
-              <LiquidRoute
-                animator={FadeAnimation}
-                component={About}
-                onChangeLang={this.handleChangeLang}
-                path="/about"
-              />
-            </Router>
-          </Translations.Provider>
-        </Locale.Provider>
-      </div>
+    return (
+      <Device.Provider value={{ userCanHover }}>
+        <div id="app">
+          <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+          <Locale.Provider value={locale}>
+            <Translations.Provider value={TOKENS[locale]}>
+              <Router onChange={this.handleRouteChange}>
+                <LiquidRoute
+                  animator={FadeAnimation}
+                  artists={artists}
+                  component={Home}
+                  path="/"
+                />
+                <LiquidRoute
+                  animator={FadeAnimation}
+                  component={ArtGallery}
+                  activeArtist={activeArtist}
+                  onChangeLang={this.handleChangeLang}
+                  path="/gallery/:id"
+                />
+                <LiquidRoute
+                  animator={FadeAnimation}
+                  component={About}
+                  onChangeLang={this.handleChangeLang}
+                  path="/about"
+                />
+              </Router>
+            </Translations.Provider>
+          </Locale.Provider>
+        </div>
+      </Device.Provider>
     );
   }
 }
