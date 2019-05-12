@@ -2,6 +2,7 @@ import { h, Component } from 'preact';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 
 import css from './style.css';
+import pointer from '../../assets/img/eye.png';
 
 import { getArtworksByArtist } from '../../model/artwork';
 import { withLocale } from '../../utils/locale';
@@ -57,7 +58,9 @@ class ArtistPage extends Component {
   /* Lifecycle */
 
   componentDidMount() {
-    this.getArtworks();
+    const { id } = this.props;
+
+    this.getArtworks(id);
   }
 
   renderArtworkDisplay = () => {
@@ -78,6 +81,7 @@ class ArtistPage extends Component {
                           title={image.alt}
                           alt={image.alt}
                           src={image.src}
+                          style={{ cursor: `url("${pointer}"), pointer` }}
                         />
 
                         <dl class={css.artworkInfo}>

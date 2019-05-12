@@ -97,11 +97,7 @@
 .artworkDisplay img {
   display: block;
   width: 66.6666%;
-}
-
-.artworkDisplay img:hover {
   cursor: pointer;
-  cursor: url("../../assets/img/eye.png"), pointer;
 }
 
 .artworkPlaceholder {
