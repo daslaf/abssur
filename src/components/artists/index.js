@@ -1,6 +1,5 @@
 import { h, Component } from 'preact';
 import debounce from 'lodash/debounce';
-import { Link } from 'preact-router/match';
 
 import Artist from '../artist';
 import css from './style';
@@ -17,7 +16,8 @@ class Artists extends Component {
 
     const contents = [
       ...artists,
-      { __type__: 'LOGO' },
+      { __type__: 'ABSTRACCION' },
+      { __type__: 'SUR' },
       { __type__: 'NAV' }
     ];
 
@@ -53,7 +53,8 @@ class Artists extends Component {
     
     const contents = [
       ...props.artists,
-      { __type__: 'LOGO' },
+      { __type__: 'ABSTRACCION' },
+      { __type__: 'SUR' },
       { __type__: 'NAV' }
     ];
 
@@ -94,9 +95,15 @@ class Artists extends Component {
       return null;
     }
 
-    if (item.__type__ === 'LOGO') {
+    if (item.__type__ === 'ABSTRACCION') {
       return (
-        <Logo />
+        <Abstraction />
+      );
+    }
+
+    if (item.__type__ === 'SUR') {
+      return (
+        <South />
       );
     }
 
@@ -140,9 +147,21 @@ class Artists extends Component {
 
 export default Artists;
 
-const Logo = () => (
-  <div class={css.logo}>
-    <span>S</span>ur.
+const Abstraction = () => (
+  <div class={css.abstraction}>
+    <span
+      class={css.glitch}
+      data-text="Abstracción"
+    >
+      Abstracción
+    </span>
+  </div>
+);
+
+const South = () => (
+  <div class={css.south}>
+    <span>S</span>
+    <span>ur.</span>
   </div>
 );
 

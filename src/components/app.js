@@ -7,6 +7,7 @@ import 'liquid-route/style.css';
 import Home from '../routes/home';
 import ArtGallery from '../routes/art-gallery';
 import About from '../routes/about';
+import Expo from '../routes/expo';
 
 import Locale from '../context/lang';
 import Device from '../context/device';
@@ -71,15 +72,7 @@ export default class App extends Component {
     });
 
     // Detect if user can hover
-    window.addEventListener(
-      'mouseover',
-      function onFirstHover() {
-        this.setState({ userCanHover: true });
-
-        window.removeEventListener('mouseover', onFirstHover, false);
-      }.bind(this),
-      false
-    );
+    // s
   }
 
   // Render
@@ -112,6 +105,12 @@ export default class App extends Component {
                   component={About}
                   onChangeLang={this.handleChangeLang}
                   path="/about"
+                />
+                <LiquidRoute
+                  animator={FadeAnimation}
+                  component={Expo}
+                  onChangeLang={this.handleChangeLang}
+                  path="/expo"
                 />
               </Router>
             </Translations.Provider>

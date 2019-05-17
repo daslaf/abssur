@@ -31,9 +31,10 @@
 
 .modalContent {
   height: calc(100vh - 32px);
-  max-height: 728px;
+  max-height: 816px;
   width: 100%;
   max-width: 1152px;
+  overflow: hidden;
 
   background: linear-gradient(#444, #333);
   border-radius: 16px;

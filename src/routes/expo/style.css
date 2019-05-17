@@ -1,0 +1,18 @@
+.columns {
+  display: flex;
+  padding: 0 4px;
+}
+
+.column {
+  width: 33.33%;
+}
+
+.item {
+  margin: 0;
+  padding: 4px;
+}
+
+.item img {
+  display: block;
+  width: 100%;
+}
