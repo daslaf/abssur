@@ -10,7 +10,7 @@
     "dev": "preact watch",
     "lint": "eslint src",
     "test": "jest",
-    "deploy": "firebase deploy",
+    "deploy": "now --target production",
     "now-build": "./node_modules/.bin/preact build --no-prerender"
   },
   "eslintConfig": {

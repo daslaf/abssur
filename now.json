@@ -39,6 +39,10 @@
       "headers": { "cache-control": "s-maxage=31536000,immutable" },
       "dest": "/route-art-gallery.chunk.$1" },
     {
+      "src": "/route-expo.chunk.(.*)",
+      "headers": { "cache-control": "s-maxage=31536000,immutable" },
+      "dest": "/route-expo.chunk.$1" },
+    {
       "src": "/route-home.chunk.(.*)",
       "headers": { "cache-control": "s-maxage=31536000,immutable" },
       "dest": "/route-home.chunk.$1" },
