@@ -12,6 +12,8 @@ class Expo extends Component {
   };
 
   componentDidMount() {
+    const { onPreload } = this.props;
+
     getExpoGallery().then((images) => {
       const items = Math.floor(images.length / 3);
 
@@ -24,6 +26,8 @@ class Expo extends Component {
       this.setState({
         images: columns
       });
+
+      onPreload();
     });
   }
 

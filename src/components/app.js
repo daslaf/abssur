@@ -111,12 +111,14 @@ export default class App extends Component {
                 animator={FadeAnimation}
                 component={About}
                 onChangeLang={this.handleChangeLang}
+                onPreload={this.handlePreloadFinish}
                 path="/about"
               />
               <LiquidRoute
                 animator={FadeAnimation}
                 component={Expo}
                 onChangeLang={this.handleChangeLang}
+                onPreload={this.handlePreloadFinish}
                 path="/expo"
               />
             </Router>
