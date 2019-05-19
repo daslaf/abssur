@@ -1,24 +1,64 @@
 import { h, Component } from 'preact';
 import debounce from 'lodash/debounce';
+import css from './style';
 
 import Artist from '../artist';
-import css from './style';
 
 import { getBreakpoint, Breakpoints } from '../../utils/breakpoints';
 import { distribute, populateGrid } from './grid';
 
 import Translations from '../../context/translations';
 
+const items = [
+  { __type__: 'ABSTRACCION' },
+  { __type__: 'SUR' },
+  { __type__: 'NAV' }
+];
+
 class Artists extends Component {
+  state = {
+    currentBreakpoint: null,
+    memoizedDistribution: {},
+    populated: []
+  };
+
+  drawGrid = () => {
+    const contents = [
+      ...this.props.artists,
+      ...items
+    ];
+
+    const currentBreakpoint = getBreakpoint();
+    const memoizedDistribution = Object.keys(Breakpoints).reduce((acc, key) => {
+      const value = key === currentBreakpoint
+        ? distribute(contents.length)(key)
+        : null;
+
+      return {
+        ...acc,
+        [key]: value
+      };
+    }, {});
+
+    const populated = populateGrid(
+      memoizedDistribution[currentBreakpoint],
+      contents
+    );
+
+    this.setState({
+      currentBreakpoint,
+      memoizedDistribution,
+      populated
+    });
+  }
+
   redrawGrid = () => {
     const { currentBreakpoint, memoizedDistribution } = this.state;
     const { artists } = this.props;
 
     const contents = [
       ...artists,
-      { __type__: 'ABSTRACCION' },
-      { __type__: 'SUR' },
-      { __type__: 'NAV' }
+      ...items
     ];
 
     const breakpoint = getBreakpoint();
@@ -48,42 +88,16 @@ class Artists extends Component {
 
   delayedCallback = debounce(this.redrawGrid, 500);
 
-  constructor(props) {
-    super(props);
-    
-    const contents = [
-      ...props.artists,
-      { __type__: 'ABSTRACCION' },
-      { __type__: 'SUR' },
-      { __type__: 'NAV' }
-    ];
-
-    const currentBreakpoint = getBreakpoint();
-    const memoizedDistribution = Object.keys(Breakpoints).reduce((acc, key) => {
-      const value = key === currentBreakpoint
-        ? distribute(contents.length)(key)
-        : null;
-
-      return {
-        ...acc,
-        [key]: value
-      };
-    }, {});
-
-    const populated = populateGrid(
-      memoizedDistribution[currentBreakpoint],
-      contents
-    );
-
-    this.state = {
-      currentBreakpoint,
-      memoizedDistribution,
-      populated
-    };
-  }
-
   componentDidMount() {
     window.addEventListener('resize', this.delayedCallback);
+
+    this.drawGrid();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.artists.length !== this.props.artists.length) {
+      this.drawGrid();
+    }
   }
 
   componentWillUnmount() {
@@ -150,7 +164,7 @@ export default Artists;
 const Abstraction = () => (
   <div class={css.abstraction}>
     <span
-      class={css.glitch}
+      class="glitch"
       data-text="Abstracción"
     >
       Abstracción
@@ -161,7 +175,7 @@ const Abstraction = () => (
 const South = () => (
   <div class={css.south}>
     <span>S</span>
-    <span>ur.</span>
+    <span>ur</span>
   </div>
 );
 

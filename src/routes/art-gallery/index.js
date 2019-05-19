@@ -16,22 +16,20 @@ class ArtistPage extends Component {
   state = {
     activeArtwork: 0,
     artworks: [],
-    fetchingArtworks: false,
     showCarousel: false
   };
 
   /* Network */
 
   getArtworks = (id) => {
-    this.setState({
-      fetchingArtworks: true
-    });
+    const { onPreload } = this.props;
 
     getArtworksByArtist(id).then((artworks) => {
       this.setState({
-        artworks,
-        fetchingArtworks: false
+        artworks
       });
+
+      onPreload();
     });
   };
 

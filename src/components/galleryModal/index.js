@@ -3,10 +3,9 @@ import Portal from 'preact-portal';
 
 import css from './style.css';
 
-import Device from '../../context/device';
 import Artwork from '../artwork';
 import Slider, { Controls, Wrapper } from '../slider';
-import { DisplayStatus, getClass } from './utils';
+import { DisplayStatus, getClass } from '../../utils/transition';
 
 class GalleryModal extends Component {
   state = {
@@ -51,16 +50,16 @@ class GalleryModal extends Component {
       : baseClasses;
   }
 
-  removeListeners = () => {
-    document.removeEventListener('keyup', this.handleKeyUp);
-  }
-
   registerListeners = () => {
     document.addEventListener('keyup', this.handleKeyUp);
   }
 
+  removeListeners = () => {
+    document.removeEventListener('keyup', this.handleKeyUp);
+  }
+
   schedule = (status, time = 0, callback) => {
-    let handler = setTimeout(() => {
+    const handler = setTimeout(() => {
       this.setState({ status });
 
       if (typeof callback === 'function') {
@@ -149,22 +148,17 @@ class GalleryModal extends Component {
               </Controls>
             </Slider>
           )}
-          <Device.Consumer>
-            {({ userCanHover }) => (!userCanHover && activeSlideData
-              ? (
-                <Artwork {...activeSlideData}>
-                  {({ name, year }) => (
-                    <div class={css.activeSlideData}>
-                      <p class={css.activeSlideDataContent}>
-                        {name} - {year}
-                      </p>
-                    </div>
-                  )}
-                </Artwork>
-              )
-              : null
-            )}
-          </Device.Consumer>
+          {activeSlideData && (
+            <Artwork {...activeSlideData}>
+              {({ name, year }) => (
+                <div class={css.activeSlideData}>
+                  <p class={css.activeSlideDataContent}>
+                    {name} - {year}
+                  </p>
+                </div>
+              )}
+            </Artwork>
+          )}
           <button
             class={css.dismiss}
             onClick={this.exitModal}

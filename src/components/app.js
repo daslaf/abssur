@@ -9,8 +9,9 @@ import ArtGallery from '../routes/art-gallery';
 import About from '../routes/about';
 import Expo from '../routes/expo';
 
+import Loading from './loading';
+
 import Locale from '../context/lang';
-import Device from '../context/device';
 import Translations from '../context/translations';
 import { ES_CL } from '../utils/locale';
 import { getArtists } from '../model/artist';
@@ -21,6 +22,7 @@ export default class App extends Component {
   state = {
     activeArtist: null,
     artists: [],
+    loading: false,
     locale: ES_CL
   }
 
@@ -29,6 +31,8 @@ export default class App extends Component {
     const { artists } = this.state;
     
     if (artists.length === 0) {
+      this.setState({ loading: true });
+
       return getArtists();
     }
 
@@ -36,8 +40,12 @@ export default class App extends Component {
   };
 
   // Handlers
-  handleChangeLang = locale => (event) => {
+  handleChangeLang = locale => () => {
     this.setState({ locale });
+  }
+
+  handlePreloadFinish = () => {
+    this.setState({ loading: false });
   }
 
   handleRouteChange = (event) => {
@@ -46,22 +54,20 @@ export default class App extends Component {
     if (matches) {
       const { id } = event.current.attributes.matches;
 
-      this.getArtists().then(
-        artists => {
-          const activeArtist = artists.find(a => {
-            const slug = a.slug[Object.keys(a.slug)[0]];
-    
-            return slug === id;
-          });
-    
-          if (!activeArtist) {
-            route('/', true);
-          }
-          else {
-            this.setState({ activeArtist });
-          }
+      this.getArtists().then((artists) => {
+        const activeArtist = artists.find(a => {
+          const slug = a.slug[Object.keys(a.slug)[0]];
+  
+          return slug === id;
+        });
+  
+        if (!activeArtist) {
+          route('/', true);
         }
-      );
+        else {
+          this.setState({ activeArtist });
+        }
+      });
     }
   }
 
@@ -70,53 +76,53 @@ export default class App extends Component {
     this.getArtists().then(artists => {
       this.setState({ artists });
     });
-
-    // Detect if user can hover
-    // s
   }
 
   // Render
   render(props, state) {
-    const { activeArtist, artists, locale, userCanHover } = state;
+    const { activeArtist, artists, loading, locale } = state;
 
     return (
-      <Device.Provider value={{ userCanHover }}>
-        <div id="app">
-          <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+      <div id="app">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 
-          <Locale.Provider value={locale}>
-            <Translations.Provider value={TOKENS[locale]}>
-              <Router onChange={this.handleRouteChange}>
-                <LiquidRoute
-                  animator={FadeAnimation}
-                  artists={artists}
-                  component={Home}
-                  path="/"
-                />
-                <LiquidRoute
-                  animator={FadeAnimation}
-                  component={ArtGallery}
-                  activeArtist={activeArtist}
-                  onChangeLang={this.handleChangeLang}
-                  path="/gallery/:id"
-                />
-                <LiquidRoute
-                  animator={FadeAnimation}
-                  component={About}
-                  onChangeLang={this.handleChangeLang}
-                  path="/about"
-                />
-                <LiquidRoute
-                  animator={FadeAnimation}
-                  component={Expo}
-                  onChangeLang={this.handleChangeLang}
-                  path="/expo"
-                />
-              </Router>
-            </Translations.Provider>
-          </Locale.Provider>
-        </div>
-      </Device.Provider>
+        <Locale.Provider value={locale}>
+          <Translations.Provider value={TOKENS[locale]}>
+            <Loading
+              in={loading}
+            />
+            <Router onChange={this.handleRouteChange}>
+              <LiquidRoute
+                animator={FadeAnimation}
+                artists={artists}
+                component={Home}
+                onPreload={this.handlePreloadFinish}
+                path="/"
+              />
+              <LiquidRoute
+                animator={FadeAnimation}
+                component={ArtGallery}
+                activeArtist={activeArtist}
+                onChangeLang={this.handleChangeLang}
+                onPreload={this.handlePreloadFinish}
+                path="/gallery/:id"
+              />
+              <LiquidRoute
+                animator={FadeAnimation}
+                component={About}
+                onChangeLang={this.handleChangeLang}
+                path="/about"
+              />
+              <LiquidRoute
+                animator={FadeAnimation}
+                component={Expo}
+                onChangeLang={this.handleChangeLang}
+                path="/expo"
+              />
+            </Router>
+          </Translations.Provider>
+        </Locale.Provider>
+      </div>
     );
   }
 }
