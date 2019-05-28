@@ -10,18 +10,18 @@ const Artwork = ({
   thumbnail,
   year
 }) => children[0]({
-  format: pluck(format),
+  format: format ? pluck(format) : null,
   image: {
     alt: pluck(pluck(image).fields.title),
     src: pluck(pluck(image).fields.file).url
   },
   name: pluck(name),
-  technique: pluck(technique),
+  technique: technique ? pluck(technique) : null,
   thumbnail: {
     alt: pluck(pluck(thumbnail).fields.title),
     src: pluck(pluck(thumbnail).fields.file).url
   },
-  year: pluck(year)
+  year: year ? pluck(year) : null
 });
 
 export default withLocale(Artwork);

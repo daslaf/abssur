@@ -159,9 +159,9 @@ class ArtistPage extends Component {
                 <section>
                   <div class={css.video}>
                     <iframe
-                      src="https://www.youtube-nocookie.com/embed/fuUhYr64Pqw?controls=0&showInfo=0"
+                      src={pluck(activeArtist.videoUrl)}
                       frameborder="0"
-                      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                      allow="autoplay; fullscreen"
                       allowfullscreen
                     />
                   </div>

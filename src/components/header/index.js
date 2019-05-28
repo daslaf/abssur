@@ -21,20 +21,6 @@ const Header = ({ onChangeLang }) => (
         <nav>
           <Logo />
         </nav>
-        <div>
-          <button
-            class={locale === ES_CL ? style.buttonActive : style.button}
-            onClick={onChangeLang(ES_CL)}
-          >
-            Español
-          </button>
-          <button
-            class={locale === EN_US ? style.buttonActive : style.button}
-            onClick={onChangeLang(EN_US)}
-          >
-            English
-          </button>
-        </div>
       </header>
     )}
   </Locale.Consumer>

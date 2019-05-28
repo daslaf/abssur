@@ -6,8 +6,7 @@ import Artists from '../../components/artists';
 import { preloadImages } from '../../utils/images';
 
 class Home extends Component {
-  prefecthImages = (cycle) => {
-    console.log('prefetch images', cycle);
+  prefecthImages = () => {
     const { artists, onPreload } = this.props;
 
     const portraits = artists.map(artist => artist.image['es-CL'].fields.file['es-CL'].url);
@@ -24,7 +23,7 @@ class Home extends Component {
     const { artists } = this.props;
 
     if (artists.length !== 0) {
-      this.prefecthImages('cDM');
+      this.prefecthImages();
     }
   }
 
@@ -32,7 +31,7 @@ class Home extends Component {
     const { artists } = this.props;
 
     if (prevProps.artists.length !== artists.length) {
-      this.prefecthImages('cDU');
+      this.prefecthImages();
     }
   }
 
