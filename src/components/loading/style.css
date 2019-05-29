@@ -33,8 +33,6 @@
 }
 
 .title {
-  composes: merriweather from global;
-
   position: absolute;
   top: 0;
   left: 0;

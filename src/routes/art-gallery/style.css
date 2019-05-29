@@ -34,8 +34,6 @@
 }
 
 .galleryArtistName {
-  composes: raleway from global;
-
   font-size: 19px;
   text-transform: uppercase;
   text-align: right;
@@ -55,7 +53,7 @@
 
   cursor: pointer;
   background-color: #b2b2b2;
-  background-size: 130%;
+  background-size: 100%;
   background-position: center;
   border-radius: 8px;
   box-shadow:
@@ -109,7 +107,7 @@
 }
 
 .artworkInfo {
-  composes: fira-mono from global;
+  /* composes: fira-mono from global; */
 
   font-size: 12px;
   text-transform: uppercase;
@@ -132,8 +130,6 @@
 }
 
 .biography {
-  composes: fira-mono from global;
-
   font-size: 16px;
   line-height: 1.5;
 }
@@ -168,7 +164,7 @@
 
   .galleryArtworks {
     flex-wrap: nowrap;
-    overflow-x: overlay;
+    overflow-x: auto;
     height: 128px;
     width: calc(100% + 16px);
   }

@@ -38,8 +38,6 @@
 }
 
 .name {
-  composes: raleway from global;
-
   display: inline-block;
   padding: 0;
   padding-left: 16px;

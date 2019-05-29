@@ -72,7 +72,7 @@ class ArtistPage extends Component {
               <Translations.Consumer>
                 {TOKENS => (
                   <Artwork {...artworks[activeArtwork]}>
-                    {({ format, image, name, technique, year }) => (
+                    {({ collection, format, image, name, technique, year }) => (
                       <div>
                         <img
                           onClick={this.handleActiveArtworkClick}
@@ -83,22 +83,36 @@ class ArtistPage extends Component {
                         />
 
                         <dl class={css.artworkInfo}>
-                          <span>
-                            <dt>{TOKENS.ARTWORK_NAME}</dt>
-                            <dd>{name}</dd>
-                          </span>
-                          <span>
-                            <dt>{TOKENS.ARTWORK_YEAR}</dt>
-                            <dd>{year}</dd>
-                          </span>
-                          <span>
-                            <dt>{TOKENS.ARTWORK_FORMAT}</dt>
-                            <dd>{format}</dd>
-                          </span>
-                          <span>
-                            <dt>{TOKENS.ARTWORK_TECHNIQUE}</dt>
-                            <dd>{technique}</dd>
-                          </span>
+                          {name && (
+                            <span>
+                              <dt>{TOKENS.ARTWORK_NAME}</dt>
+                              <dd>{name}</dd>
+                            </span>
+                          )}
+                          {year && (
+                            <span>
+                              <dt>{TOKENS.ARTWORK_YEAR}</dt>
+                              <dd>{year}</dd>
+                            </span>
+                          )}
+                          {format && (
+                            <span>
+                              <dt>{TOKENS.ARTWORK_FORMAT}</dt>
+                              <dd>{format}</dd>
+                            </span>
+                          )}
+                          {technique && (
+                            <span>
+                              <dt>{TOKENS.ARTWORK_TECHNIQUE}</dt>
+                              <dd>{technique}</dd>
+                            </span>
+                          )}
+                          {collection && (
+                            <span>
+                              <dt>{TOKENS.ARTWORK_COLLECTION}</dt>
+                              <dd>{collection}</dd>
+                            </span>
+                          )}
                         </dl>
                       </div>
                     )}

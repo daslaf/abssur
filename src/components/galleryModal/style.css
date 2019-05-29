@@ -112,6 +112,12 @@
   background-color: rgba(0, 0, 0, 0.2);
 }
 
+.controlsPrevious:disabled,
+.controlsNext:disabled {
+  opacity: .3;
+  cursor: not-allowed;
+}
+
 .slide {
   height: 100%;
   width: 100%;
@@ -138,8 +144,6 @@
 }
 
 .activeSlideDataContent {
-  composes: fira-mono from global;
-
   display: inline-block;
   padding: 4px 12px;
   margin: 0;

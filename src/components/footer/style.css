@@ -13,8 +13,6 @@
 }
 
 .link {
-  composes: raleway from global;
-
   position: relative;
   pointer-events: all;
 

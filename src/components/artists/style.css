@@ -48,8 +48,6 @@
 }
 
 .abstraction {
-  composes: merriweather from global;
-
   background-color: #272727;
   color: #fff;
   display: flex;
@@ -66,8 +64,6 @@
 }
 
 .south {
-  composes: merriweather from global;
-
   background-color: #272727;
   color: #fff;
   display: flex;
@@ -102,8 +98,6 @@
 }
 
 .link {
-  composes: fira-mono from global;
-
   padding: 8px 12px;
 
   color: #fff;

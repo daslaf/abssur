@@ -51,8 +51,6 @@
 }
 
 .title {
-  composes: fira-mono from global;
-
   position: relative;
   display: inline-block;  
 
@@ -90,8 +88,6 @@
 }
 
 .about {
-  composes: fira-mono from global;
-
   line-height: 1.5;
   font-size: 14px;
   letter-spacing: 0.04rem;

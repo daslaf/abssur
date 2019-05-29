@@ -2,6 +2,7 @@ import { withLocale } from '../../utils/locale';
 
 const Artwork = ({
   children,
+  collection,
   format,
   image,
   name,
@@ -10,6 +11,7 @@ const Artwork = ({
   thumbnail,
   year
 }) => children[0]({
+  collection: collection ? pluck(collection) : null,
   format: format ? pluck(format) : null,
   image: {
     alt: pluck(pluck(image).fields.title),

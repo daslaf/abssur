@@ -94,7 +94,7 @@ class GalleryModal extends Component {
 
   renderContent = (props, state) => {
     const { activeArtwork, artworks } = props;
-    const { activeSlideData, status } = state;
+    const { status } = state;
 
     const modalClassList = this.getClassList('modal');
     const modalContentClassList = this.getClassList('modalContent');
@@ -147,17 +147,6 @@ class GalleryModal extends Component {
                 )}
               </Controls>
             </Slider>
-          )}
-          {activeSlideData && (
-            <Artwork {...activeSlideData}>
-              {({ name, year }) => (
-                <div class={css.activeSlideData}>
-                  <p class={css.activeSlideDataContent}>
-                    {name} - {year}
-                  </p>
-                </div>
-              )}
-            </Artwork>
           )}
           <button
             class={css.dismiss}
