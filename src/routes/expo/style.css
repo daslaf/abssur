@@ -16,3 +16,22 @@
   display: block;
   width: 100%;
 }
+
+.imageWrapper {
+  cursor: pointer;
+  filter: grayscale(1);
+  transition: all 195ms ease;
+  overflow: hidden;
+}
+
+.imageWrapper img {
+  transition: all 275ms ease;
+}
+
+.imageWrapper:hover {
+  filter: grayscale(0);
+}
+
+.imageWrapper:hover img {
+  transform: scale(1.1);
+}
