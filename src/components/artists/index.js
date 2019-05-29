@@ -10,8 +10,7 @@ import { distribute, populateGrid } from './grid';
 import Translations from '../../context/translations';
 
 const items = [
-  { __type__: 'ABSTRACCION' },
-  { __type__: 'SUR' },
+  { __type__: 'LOGO' },
   { __type__: 'NAV' }
 ];
 
@@ -109,15 +108,9 @@ class Artists extends Component {
       return null;
     }
 
-    if (item.__type__ === 'ABSTRACCION') {
+    if (item.__type__ === 'LOGO') {
       return (
-        <Abstraction />
-      );
-    }
-
-    if (item.__type__ === 'SUR') {
-      return (
-        <South />
+        <Logo />
       );
     }
 
@@ -161,21 +154,12 @@ class Artists extends Component {
 
 export default Artists;
 
-const Abstraction = () => (
+const Logo = () => (
   <div class={css.abstraction}>
-    <span
-      class="glitch"
-      data-text="Abstracción"
-    >
-      Abstracción
-    </span>
-  </div>
-);
-
-const South = () => (
-  <div class={css.south}>
-    <span>S</span>
-    <span>ur</span>
+    <img
+      src="assets/img/logo-white.png"
+      alt="Logo Abstracción Sur"
+    />
   </div>
 );
 
@@ -183,8 +167,22 @@ const Nav = () => (
   <Translations.Consumer>
     {tokens => (
       <nav class={css.nav}>
-        <a class={css.link} href="/expo">{tokens.NAV_GALLERY}</a>
-        <a class={css.link} href="/about">{tokens.NAV_TEAM}</a>
+        <a class={css.link} href="/expo">
+          <span
+            class={css.glitch}
+            data-text={tokens.NAV_GALLERY}
+          >
+            {tokens.NAV_GALLERY}
+          </span>
+        </a>
+        <a class={css.link} href="/about">
+          <span
+            class={css.glitch}
+            data-text={tokens.NAV_TEAM}
+          >
+            {tokens.NAV_TEAM}
+          </span>
+        </a>
       </nav>
     )}
   </Translations.Consumer>

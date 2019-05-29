@@ -30,7 +30,7 @@ class About extends Component {
           </section>
 
           <section class={css.team} id="team">
-            <h2 class={css.title} style="margin-top: 80px;">Micro-documentales Abstracción Sur</h2>
+            <h2 class={css.title}>Micro-documentales Abstracción Sur</h2>
 
             <dl>
               <dt>Dirección</dt>
@@ -69,7 +69,7 @@ class About extends Component {
           </section>
 
           <section id="photography">
-            <h2 class={css.title} style="margin-top: 80px;">Fotografía de obras</h2>
+            <h2 class={css.title}>Fotografía de obras</h2>
 
             <ul class={css.list}>
               <li>Fernando Balmaceda</li>
@@ -102,7 +102,7 @@ class About extends Component {
           </section>
 
           <section id="acknowledgement">
-            <h2 class={css.title} style="margin-top: 80px;">Agradecimientos</h2>
+            <h2 class={css.title}>Agradecimientos</h2>
 
             <ul class={css.listCols}>
               <li>Paula Alvarado</li>
@@ -122,6 +122,7 @@ class About extends Component {
               <li>Denise Rattinof</li>
               <li>Esteban “Rama” Oliva</li>
               <li>Enrique Rivera</li>
+              <li>María José Riveros</li>
               <li>Gonzalo Sánchez</li>
               <li>Ramón Sauma</li>
               <li>María Smith-Rodríguez</li>
@@ -141,7 +142,7 @@ class About extends Component {
           </section>
 
           <section id="financedBy" style="margin-bottom: 80px;">
-            <h2 class={css.title} style="margin-top: 80px;">Proyecto financiado por</h2>
+            <h2 class={css.title}>Proyecto financiado por</h2>
 
             <img
               class={css.fondart}

@@ -49,6 +49,9 @@ export default class App extends Component {
   }
 
   handleRouteChange = (event) => {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+
     const matches = (/^\/gallery\/.*/g).test(event.url);
 
     if (matches) {
