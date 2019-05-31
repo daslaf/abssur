@@ -154,12 +154,18 @@ class Artists extends Component {
 
 export default Artists;
 
+const divStyle = {
+  backgroundImage: 'url(assets/img/logo-white.png)'
+};
+
 const Logo = () => (
   <div class={css.abstraction}>
-    <img
-      src="assets/img/logo-white.png"
-      alt="Logo Abstracción Sur"
-    />
+    <div style={divStyle}>
+      <img
+        src="assets/img/logo-white-yellow.png"
+        alt="Logo Abstracción Sur"
+      />
+    </div>
   </div>
 );
 

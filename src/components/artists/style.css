@@ -61,10 +61,24 @@
   inset 0px 0px 0px 10px #fff;
 }
 
+@keyframes flickerAnimation {
+  0%   { opacity: 1; }
+  50%  { opacity: 0; }
+  100% { opacity: 1; }
+}
+
 .abstraction img {
+  animation: flickerAnimation 3s infinite;
+
   width: 100%;
   display: block;
-  max-width: 256px;
+}
+.abstraction div {
+  max-width: 320px;
+  margin: auto;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .south {
@@ -103,9 +117,10 @@
 
 .link {
   padding: 8px 12px;
+  padding-left: 0;
 
   color: #fff;
-  font-size: 14px;
+  font-size: 17px;
   font-weight: 600;
   text-transform: uppercase;
   text-decoration: none;
@@ -118,4 +133,10 @@
 
 .link:hover .glitch {
   color: #ff0;
+}
+
+@media screen and (max-width: 576px) {
+  .link {
+    font-size: 14px;
+  }
 }

@@ -3,3 +3,4 @@ node_modules
 /*.log
 *.lock
 .DS_STORE
+.DS_Store
