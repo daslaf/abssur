@@ -19,7 +19,7 @@ const Artist = ({
     href={`/gallery/${pluck(slug)}`}
     class={style.artist}
     style={{
-      backgroundImage: `url(${pluck(pluck(image).fields.file).url})`
+      backgroundImage: `url(${pluck(pluck(mainArtwork).fields.file).url})`
     }}
     onMouseEnter={onMouseEnter}
     onMouseLeave={onMouseLeave}
@@ -27,12 +27,11 @@ const Artist = ({
     <div
       class={style.mainArtwork}
       style={{
-        backgroundImage: `url(${pluck(pluck(mainArtwork).fields.file).url})`
+        backgroundImage: `url(${pluck(pluck(image).fields.file).url})`
       }}
     />
     <h1 class={style.name}>
-      <span>{pluck(name)}</span>
-      <strong>{pluck(surname)}</strong>
+      {pluck(name)}{' '}<strong>{pluck(surname)}</strong>
     </h1>
   </Link>
 );
