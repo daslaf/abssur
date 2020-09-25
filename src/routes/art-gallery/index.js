@@ -65,150 +65,137 @@ class ArtistPage extends Component {
     const { activeArtwork, artworks } = this.state;
 
     return (
-      <section class={css.artwork}>
-        <div class={css.artworkDisplay}>
-          {artworks.length
-            ? (
-              <Translations.Consumer>
-                {TOKENS => (
-                  <Artwork {...artworks[activeArtwork]}>
-                    {({ collection, format, image, name, technique, year }) => (
-                      <div>
-                        <img
-                          onClick={this.handleActiveArtworkClick}
-                          title={image.alt}
-                          alt={image.alt}
-                          src={image.src}
-                          style={{ cursor: `url("${pointer}"), pointer` }}
-                        />
+      <div className={css.artworkDisplay}>
+        {artworks.length
+          ? (
+            <Translations.Consumer>
+              {TOKENS => (
+                <Artwork {...artworks[activeArtwork]}>
+                  {({ collection, format, image, name, technique, year }) => (
+                    <div>
+                      <img
+                        onClick={this.handleActiveArtworkClick}
+                        title={image.alt}
+                        alt={image.alt}
+                        src={image.src}
+                        style={{ cursor: `url("${pointer}"), pointer` }}
+                      />
 
-                        <dl class={css.artworkInfo}>
-                          {name && (
-                            <span>
-                              <dt>{TOKENS.ARTWORK_NAME}</dt>
-                              <dd>{name}</dd>
-                            </span>
-                          )}
-                          {year && (
-                            <span>
-                              <dt>{TOKENS.ARTWORK_YEAR}</dt>
-                              <dd>{year}</dd>
-                            </span>
-                          )}
-                          {format && (
-                            <span>
-                              <dt>{TOKENS.ARTWORK_FORMAT}</dt>
-                              <dd>{format}</dd>
-                            </span>
-                          )}
-                          {technique && (
-                            <span>
-                              <dt>{TOKENS.ARTWORK_TECHNIQUE}</dt>
-                              <dd>{technique}</dd>
-                            </span>
-                          )}
-                          {collection && (
-                            <span>
-                              <dt>{TOKENS.ARTWORK_COLLECTION}</dt>
-                              <dd>{collection}</dd>
-                            </span>
-                          )}
-                        </dl>
-                      </div>
-                    )}
-                  </Artwork>
-                )}
-              </Translations.Consumer>
-            )
-            : (
-              <div class={css.artworkPlaceholder} />
-            )
-          }
-        </div>
-      </section>
+                      {/* <dl className={css.artworkInfo}>
+                        {name && (
+                          <span>
+                            <dt>{TOKENS.ARTWORK_NAME}</dt>
+                            <dd>{name}</dd>
+                          </span>
+                        )}
+                        {year && (
+                          <span>
+                            <dt>{TOKENS.ARTWORK_YEAR}</dt>
+                            <dd>{year}</dd>
+                          </span>
+                        )}
+                        {format && (
+                          <span>
+                            <dt>{TOKENS.ARTWORK_FORMAT}</dt>
+                            <dd>{format}</dd>
+                          </span>
+                        )}
+                        {technique && (
+                          <span>
+                            <dt>{TOKENS.ARTWORK_TECHNIQUE}</dt>
+                            <dd>{technique}</dd>
+                          </span>
+                        )}
+                        {collection && (
+                          <span>
+                            <dt>{TOKENS.ARTWORK_COLLECTION}</dt>
+                            <dd>{collection}</dd>
+                          </span>
+                        )}
+                      </dl> */}
+                    </div>
+                  )}
+                </Artwork>
+              )}
+            </Translations.Consumer>
+          )
+          : (
+            <div className={css.artworkPlaceholder} />
+          )
+        }
+      </div>
     );
   }
 
   renderArtworksList = () => {
-    const { activeArtist, pluck } = this.props;
     const { activeArtwork, artworks } = this.state;
 
     return (
-      <section class={css.gallery}>
-        <div class={css.galleryArtworks}>
-          {artworks.map((data, index) => (
-            <Artwork {...data}>
-              {({ thumbnail }) => (
-                <figure
-                  class={`${css.galleryItem} ${activeArtwork === index ? css.galleryItemActive  : '' }`}
-                  role="image"
-                  tabIndex="0"
-                  title={thumbnail.alt}
-                  onClick={this.handleArtworkClick(index)}
-                  onKeyDown={this.handleArtworkKeydown(index)}
-                  style={{ backgroundImage: `url(${thumbnail.src})` }}
-                />
-              )}
-            </Artwork>
-          ))}
-        </div>
-        <h1 class={css.galleryArtistName}>
-          {pluck(activeArtist.name)} <strong>{pluck(activeArtist.surname)}</strong>
-        </h1>
-      </section>
+      <div className={css.galleryArtworks}>
+        {artworks.map((data, index) => (
+          <Artwork {...data}>
+            {({ thumbnail }) => (
+              <figure
+                className={`${css.galleryItem} ${activeArtwork === index ? css.galleryItemActive  : '' }`}
+                role="image"
+                tabIndex="0"
+                title={thumbnail.alt}
+                onClick={this.handleArtworkClick(index)}
+                onKeyDown={this.handleArtworkKeydown(index)}
+                style={{ backgroundImage: `url(${thumbnail.src})` }}
+              />
+            )}
+          </Artwork>
+        ))}
+      </div>
     );
   }
 
   render(props, state) {
-    const { activeArtist, onChangeLang, pluck } = props;
+    const {
+      activeArtist,
+      onChangeLang,
+      pluck
+    } = props;
     const { activeArtwork, artworks, showCarousel } = state;
 
-    return (
-      <span>
-        <Header onChangeLang={onChangeLang} />
-        <main class="container" style={{ paddingLeft: 16, paddingRight: 16 }}>
-          {activeArtist
-            ? (
-              <span>
-                <section>
-                  <div class={css.video}>
-                    <iframe
-                      src={pluck(activeArtist.videoUrl)}
-                      frameborder="0"
-                      allow="autoplay; fullscreen"
-                      allowfullscreen
-                    />
-                  </div>
-                </section>
+    return activeArtist && (
+      <div className={css.mainGrid}>
+        <section className={css.header}>
+          <Header onChangeLang={onChangeLang} />
+        </section>
+        <section className={css.artistName}>
+          <h1 className={css.galleryArtistName}>
+            {pluck(activeArtist.name)}{' '}<strong>{pluck(activeArtist.surname)}</strong>
+          </h1>
+        </section>
+        <section className={css.artworkDisplaySection}>
+          {this.renderArtworkDisplay()}
+        </section>
+        <section className={css.biography}>
+          <div className={css.biographyContent}>
+            {documentToReactComponents(pluck(activeArtist.biography))}
+          </div>
+          <div className={css.video}>
+            <iframe
+              src={pluck(activeArtist.videoUrl)}
+              frameborder="0"
+              allow="autoplay; fullscreen"
+              allowfullscreen
+            />
+          </div>
+        </section>
+        <section className={css.gallery}>
+          {this.renderArtworksList()}
+        </section>
 
-                {/* Artworks List */}
-                {this.renderArtworksList()}
-
-                {/* Gallery Modal */}
-                <GalleryModal
-                  in={showCarousel}
-                  onHide={this.handleHideModal}
-                  activeArtwork={activeArtwork}
-                  artworks={artworks}
-                />
-                
-                {/* Active Artwork */}
-                {this.renderArtworkDisplay()}
-
-                {/* Biography */}
-                {activeArtist && (
-                  <section class={css.biography}>
-                    {documentToReactComponents(pluck(activeArtist.biography))}
-                  </section>
-                )}
-              </span>
-            )
-            : (
-              <h1>Loading</h1>
-            )
-          }
-        </main>
-      </span>
+        <GalleryModal
+          in={showCarousel}
+          onHide={this.handleHideModal}
+          activeArtwork={activeArtwork}
+          artworks={artworks}
+        />  
+      </div>
     );
   }
 }

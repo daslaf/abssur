@@ -1,11 +1,42 @@
+.mainGrid {
+  display: grid;
+  max-width: 1480px;
+  height: 100vh;
+  margin: auto;
+  padding: 0 24px;
+  grid-template-columns: 1fr 4.5fr 3fr;
+  grid-template-rows: 64px auto auto;
+  gap: 24px;
+  grid-template-areas:
+    "Header      Header           Header"
+    "Artist-Name Artwork-Display  Biography"
+    "Artist-Name Gallery          Gallery";
+}
+.header { grid-area: Header; }
+.artistName {
+  grid-area: Artist-Name;
+  position: relative;
+}
+
+/* biography */
+
+.biography {
+  grid-area: Biography;
+  font-size: 16px;
+  line-height: 1.61803399;
+}
+
+.biography p {
+  margin: 0;
+  margin-bottom: 1em;
+}
+
+/* Video */
 .video {
   position: relative;
-  width: 80%;
+  width: 100%;
   padding-bottom: 56.25%;
   height: 0;
-  margin-right: 0;
-  margin-left: auto;
-  margin-bottom: 240px;
 }
 
 .video iframe {
@@ -16,38 +47,48 @@
   height: 100%;
 }
 
-.gallery {
+
+/* Gallery artwork selection */
+
+.gallery { grid-area: Gallery; }
+
+.galleryArtistName {
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  margin: 0 -8px;
-  margin-bottom: 88px;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: 0;
+
+  font-size: 56px;
+  font-weight: 400;
+  text-transform: uppercase;
+  text-align: center;
+  writing-mode: vertical-lr;
+  transform: rotate(180deg);
+  transform-origin: center;
+  text-align: center;
+}
+
+.galleryArtistName strong {
+  margin-top: 1rem;
+  font-weight: 600;
 }
 
 .galleryArtworks {
   display: flex;
   flex-wrap: wrap;
   list-style: none;
-  padding: 0 8px;
-  margin: 0 -8px;
-  width: 80%;
-}
-
-.galleryArtistName {
-  font-size: 19px;
-  text-transform: uppercase;
-  text-align: right;
-  font-weight: 400;
-  margin: 8px;
-}
-
-.galleryArtistName strong {
-  font-weight: 600;
+  margin: 0 -4px;
+  width: 100%;
 }
 
 .galleryItem {
-  width: 108px;
-  height: 108px;
+  width: 72px;
+  height: 72px;
   margin: 8px;
   overflow: hidden;
 
@@ -55,7 +96,7 @@
   background-color: #b2b2b2;
   background-size: 100%;
   background-position: center;
-  border-radius: 8px;
+  border-radius: 2px;
   box-shadow:
   0 2px 4px -2px rgba(0,0,0,.1),
   0 4px 8px -4px rgba(0,0,0,.1);
@@ -80,11 +121,10 @@
   0 16px 32px -8px rgba(0,0,0,.1);
 }
 
-.artwork,
-.biography {
-  width: 60%;
-  margin-left: auto;
-  margin-right: 0;
+/* Artwork display */
+
+.artworkDisplaySection {
+  grid-area: Artwork-Display;
 }
 
 .artworkDisplay {
@@ -94,16 +134,16 @@
 
 .artworkDisplay img {
   display: block;
-  width: 66.6666%;
+  width: 100%;
   cursor: pointer;
 }
 
 .artworkPlaceholder {
   display: block;
   height: 0;
-  width: 66.6666%;
+  width: 100%;
   background-color:  #b2b2b2;
-  padding-bottom: 66.6666%;
+  padding-bottom: 100%;
 }
 
 .artworkInfo {
@@ -125,58 +165,3 @@
 .artworkInfo dd {
   margin: 8px 0;
 }
-
-.biography {
-  font-size: 16px;
-  line-height: 1.61803399;
-}
-
-@media only screen and (max-width: 991px) {
-  .artworkDisplay img {
-    width: 100%;
-  }
-}
-
-@media only screen and (max-width: 767px) {
-  .artwork,
-  .biography,
-  .galleryArtworks,
-  .video {
-    width: 100%;
-  }
-
-  .video {
-    margin-bottom: 120px;
-  }
-
-  .gallery {
-    flex-direction: column-reverse;
-  }
-}
-
-@media only screen and (max-width: 575.98px) {
-  .gallery {
-    margin-bottom: 48px;
-  }
-
-  .galleryArtworks {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    height: 128px;
-    width: calc(100% + 16px);
-  }
-
-  .galleryItem {
-    height: 88px;
-    min-width: 88px;
-  }
-
-  .artworkInfo {
-    margin: 64px 0;
-  }
-
-  .biography {
-    font-size: 14px;
-  }
-}
-
